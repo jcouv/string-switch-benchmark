@@ -4,18 +4,20 @@ using BenchmarkDotNet.Running;
 var summary = BenchmarkRunner.Run<LengthVsHashCode>();
 
 /*
-|             Method |          Mean |     Error |    StdDev |
-|------------------- |--------------:|----------:|----------:|
-|         Switch1New |    27.6114 ns | 0.1031 ns | 0.0964 ns |
-|         Switch1Old |    45.8353 ns | 0.4962 ns | 0.4399 ns |
-| NotALengthMatchNew |     0.4517 ns | 0.0071 ns | 0.0066 ns |
-| NotALengthMatchOld |     5.4676 ns | 0.0139 ns | 0.0130 ns |
-|           DenseNew |   943.7901 ns | 5.6309 ns | 4.9917 ns |
-|           DenseOld |   955.1933 ns | 7.8330 ns | 7.3270 ns |
-|        DenseFewNew |   163.6348 ns | 3.1624 ns | 3.1059 ns |
-|        DenseFewOld |   150.8369 ns | 2.3141 ns | 2.1646 ns |
-|          SparseNew | 1,477.3057 ns | 6.3452 ns | 5.9353 ns |
-|          SparseOld | 1,473.9233 ns | 4.5532 ns | 4.0363 ns |
+|                   Method |          Mean |     Error |    StdDev |
+|------------------------- |--------------:|----------:|----------:|
+|               Switch1New |    27.6447 ns | 0.1740 ns | 0.1543 ns |
+|               Switch1Old |    44.1037 ns | 0.2957 ns | 0.2766 ns |
+|       NotALengthMatchNew |     0.4219 ns | 0.0064 ns | 0.0060 ns |
+|       NotALengthMatchOld |     5.4925 ns | 0.0270 ns | 0.0253 ns |
+|                 DenseNew |   945.3718 ns | 8.4476 ns | 7.9019 ns |
+|                 DenseOld |   954.5867 ns | 8.7684 ns | 8.2020 ns |
+|              DenseFewNew |   165.3166 ns | 3.2272 ns | 4.6283 ns |
+|              DenseFewOld |   156.7531 ns | 1.8161 ns | 1.6988 ns |
+|                SparseNew | 1,475.7378 ns | 4.6374 ns | 4.3378 ns |
+|                SparseOld | 1,477.8633 ns | 6.1797 ns | 5.7805 ns |
+|              ContentType |    13.2868 ns | 0.0501 ns | 0.0391 ns |
+| ContentTypeAsListPattern |    17.2237 ns | 0.1384 ns | 0.1227 ns |
 */
 public class LengthVsHashCode
 {
@@ -43,4 +45,9 @@ public class LengthVsHashCode
     public int SparseNew() => NewRoslyn.Sparse();
     [Benchmark]
     public int SparseOld() => OldRoslyn.Sparse();
+
+    [Benchmark]
+    public int ContentType() => NewRoslyn.ContentType();
+    [Benchmark]
+    public int ContentTypeAsListPattern() => NewRoslyn.ContentTypeAsListPattern();
 }

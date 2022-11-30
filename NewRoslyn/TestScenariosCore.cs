@@ -27,6 +27,7 @@ public class TestScenariosCore
         return y;
     }
 
+    // This is the best case, since we reach a conclusion with just a Length check.
     public static int NotALengthMatch()
     {
         var x = "abcdefghijklm";
@@ -44,6 +45,9 @@ public class TestScenariosCore
         };
     }
 
+    // This is the worst case, since after doing Length and char checks we still compute the hash code.
+    // This motivates giving up on optimization when buckets resulting from char checks are too large.
+    // Alternatively, we could check a bundle of 2 or 4 chars at once.
     public static int Dense()
     {
         int y = 42;
@@ -143,6 +147,74 @@ public class TestScenariosCore
                 "99" => 0,
                 _ => 0,
             };
+        }
+        return y;
+    }
+
+    public static int ContentType()
+    {
+        int y = 42;
+        foreach (var x in new[] { "text/xml", "text/plain", "application/pdf", "other" })
+        {
+            switch (x)
+            {
+                case "text/xml":
+                case "text/css":
+                case "text/csv":
+                case "image/gif":
+                case "image/png":
+                case "text/html":
+                case "text/plain":
+                case "image/jpeg":
+                case "application/pdf":
+                case "application/xml":
+                case "application/zip":
+                case "application/grpc":
+                case "application/json":
+                case "multipart/form-data":
+                case "application/javascript":
+                case "application/octet-stream":
+                case "text/html; charset=utf-8":
+                case "text/plain; charset=utf-8":
+                case "application/json; charset=utf-8":
+                case "application/x-www-form-urlencoded":
+                    y++;
+                    break;
+            }
+        }
+        return y;
+    }
+
+    public static int ContentTypeAsListPattern()
+    {
+        int y = 42;
+        foreach (var x in new[] { "text/xml", "text/plain", "application/pdf", "other" })
+        {
+            switch (x)
+            {
+                case ['t', 'e', 'x', 't', '/', 'x', 'm', 'l']:
+                case ['t', 'e', 'x', 't', '/', 'c', 's', 's']:
+                case ['t', 'e', 'x', 't', '/', 'c', 's', 'v']:
+                case ['i', 'm', 'a', 'g', 'e', '/', 'g', 'i', 'f']:
+                case ['i', 'm', 'a', 'g', 'e', '/', 'p', 'n', 'g']:
+                case ['t', 'e', 'x', 't', '/', 'h', 't', 'm', 'l']:
+                case ['t', 'e', 'x', 't', '/', 'p', 'l', 'a', 'i', 'n']:
+                case ['i', 'm', 'a', 'g', 'e', '/', 'j', 'p', 'e', 'g']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'p', 'd', 'f']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'x', 'm', 'l']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'z', 'i', 'p']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'g', 'r', 'p', 'c']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'j', 's', 'o', 'n']:
+                case ['m', 'u', 'l', 't', 'i', 'p', 'a', 'r', 't', '/', 'f', 'o', 'r', 'm', '-', 'd', 'a', 't', 'a']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'j', 'a', 'v', 'a', 's', 'c', 'r', 'i', 'p', 't']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'o', 'c', 't', 'e', 't', '-', 's', 't', 'r', 'e', 'a', 'm']:
+                case ['t', 'e', 'x', 't', '/', 'h', 't', 'm', 'l', ';', ' ', 'c', 'h', 'a', 'r', 's', 'e', 't', '=', 'u', 't', 'f', '-', '8']:
+                case ['t', 'e', 'x', 't', '/', 'p', 'l', 'a', 'i', 'n', ';', ' ', 'c', 'h', 'a', 'r', 's', 'e', 't', '=', 'u', 't', 'f', '-', '8']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'j', 's', 'o', 'n', ';', ' ', 'c', 'h', 'a', 'r', 's', 'e', 't', '=', 'u', 't', 'f', '-', '8']:
+                case ['a', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n', '/', 'x', '-', 'w', 'w', 'w', '-', 'f', 'o', 'r', 'm', '-', 'u', 'r', 'l', 'e', 'n', 'c', 'o', 'd', 'e', 'd']:
+                    y++;
+                    break;
+            }
         }
         return y;
     }
