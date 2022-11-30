@@ -8,7 +8,28 @@ public class TestScenariosCore
     // - dense vs. sparse cases for a given length
     public static int Switch1()
     {
-        var x = "abc";
+        int y = 0;
+        foreach (var x in new[] { "a", "ab", "ab_", "abc", "abcd", "abcde", "abcdef", "abcdefg", "abcdefgh", "abcdefghi" })
+        {
+            y += x switch
+            {
+                "a" => 1,
+                "ab" => 2,
+                "ab_" => 3,
+                "abcd" => 4,
+                "abcde" => 5,
+                "abcdef" => 6,
+                "abcdefg" => 7,
+                "abcdefgh" => 8,
+                _ => 9,
+            };
+        }
+        return y;
+    }
+
+    public static int NotALengthMatch()
+    {
+        var x = "abcdefghijklm";
         return x switch
         {
             "a" => 1,
