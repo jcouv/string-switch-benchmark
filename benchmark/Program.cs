@@ -4,20 +4,24 @@ using BenchmarkDotNet.Running;
 var summary = BenchmarkRunner.Run<LengthVsHashCode>();
 
 /*
-|                   Method |          Mean |     Error |    StdDev |
-|------------------------- |--------------:|----------:|----------:|
-|               Switch1New |    27.6447 ns | 0.1740 ns | 0.1543 ns |
-|               Switch1Old |    44.1037 ns | 0.2957 ns | 0.2766 ns |
-|       NotALengthMatchNew |     0.4219 ns | 0.0064 ns | 0.0060 ns |
-|       NotALengthMatchOld |     5.4925 ns | 0.0270 ns | 0.0253 ns |
-|                 DenseNew |   945.3718 ns | 8.4476 ns | 7.9019 ns |
-|                 DenseOld |   954.5867 ns | 8.7684 ns | 8.2020 ns |
-|              DenseFewNew |   165.3166 ns | 3.2272 ns | 4.6283 ns |
-|              DenseFewOld |   156.7531 ns | 1.8161 ns | 1.6988 ns |
-|                SparseNew | 1,475.7378 ns | 4.6374 ns | 4.3378 ns |
-|                SparseOld | 1,477.8633 ns | 6.1797 ns | 5.7805 ns |
-|              ContentType |    13.2868 ns | 0.0501 ns | 0.0391 ns |
-| ContentTypeAsListPattern |    17.2237 ns | 0.1384 ns | 0.1227 ns |
+|                        Method |          Mean |     Error |    StdDev |
+|------------------------------ |--------------:|----------:|----------:|
+|                    Switch1New |    28.0032 ns | 0.1477 ns | 0.1309 ns |
+|                    Switch1Old |    43.8506 ns | 0.2998 ns | 0.2805 ns |
+|            NotALengthMatchNew |     0.4228 ns | 0.0023 ns | 0.0022 ns |
+|            NotALengthMatchOld |     5.4909 ns | 0.0151 ns | 0.0134 ns |
+|                      DenseNew |   960.5969 ns | 9.2361 ns | 8.6395 ns |
+|                      DenseOld |   951.7943 ns | 6.4528 ns | 5.3884 ns |
+|                   DenseFewNew |   165.1076 ns | 2.3569 ns | 2.2047 ns |
+|                   DenseFewOld |   155.8870 ns | 2.0038 ns | 1.8743 ns |
+|                     SparseNew | 1,482.9110 ns | 6.4001 ns | 5.9867 ns |
+|                     SparseOld | 1,495.7279 ns | 4.0566 ns | 3.3874 ns |
+|                ContentTypeNew |    13.5836 ns | 0.2536 ns | 0.2248 ns |
+|                ContentTypeOld |    25.5421 ns | 0.1449 ns | 0.1284 ns |
+|      ContentTypeAsListPattern |    17.3515 ns | 0.0695 ns | 0.0616 ns |
+|                   CyrusSwitch |    17.9155 ns | 0.1048 ns | 0.0981 ns |
+|                     CyrusTrie |   917.7107 ns | 2.9565 ns | 2.4688 ns |
+| CyrusTrieWithoutOptimizations |   929.3835 ns | 3.9046 ns | 3.4613 ns |
 */
 public class LengthVsHashCode
 {
@@ -47,7 +51,16 @@ public class LengthVsHashCode
     public int SparseOld() => OldRoslyn.Sparse();
 
     [Benchmark]
-    public int ContentType() => NewRoslyn.ContentType();
+    public int ContentTypeNew() => NewRoslyn.ContentType();
     [Benchmark]
-    public int ContentTypeAsListPattern() => NewRoslyn.ContentTypeAsListPattern();
+    public int ContentTypeOld() => OldRoslyn.ContentType();
+    [Benchmark]
+    public int ContentTypeAsListPattern() => OldRoslyn.ContentTypeAsListPattern();
+
+    [Benchmark]
+    public int CyrusSwitch() => OldRoslyn.CyrusSwitch();
+    [Benchmark]
+    public int CyrusTrie() => OldRoslyn.CyrusTrie();
+    [Benchmark]
+    public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
 }
