@@ -6845,4 +6845,54 @@ public class TestScenariosCore
             };
         }
     }
+
+    public static int ShortSwitch_FirstCase()
+        => ShortSwitchCore("GET");
+
+    public static int ShortSwitch_SecondCase()
+        => ShortSwitchCore("POST");
+
+    public static int ShortSwitch_ThirdCase()
+        => ShortSwitchCore("PUT");
+
+    public static int ShortSwitch_FourthCase()
+        => ShortSwitchCore("DELETE");
+
+    private static int ShortSwitchCore(string s)
+    {
+        return s switch
+        {
+            "GET" => 0,
+            "POST" => 1,
+            "PUT" => 2,
+            "DELETE" => 3,
+            _ => 0
+        };
+    }
+
+    public static int ShortSwitchLongWords_FirstCase()
+        => ShortSwitchLongWordsCore("application/javascript");
+
+    public static int ShortSwitchLongWords_SecondCase()
+        => ShortSwitchLongWordsCore("application/octet-stream");
+
+    public static int ShortSwitchLongWords_ThirdCase()
+        => ShortSwitchLongWordsCore("text/html; charset=utf-8");
+
+    public static int ShortSwitchLongWords_FourthCase()
+        => ShortSwitchLongWordsCore("text/plain; charset=utf-8");
+
+    private static int ShortSwitchLongWordsCore(string s)
+    {
+        return s switch
+        {
+            "application/javascript" => 0,
+            "application/octet-stream" => 0,
+            "text/html; charset=utf-8" => 0,
+            "text/plain; charset=utf-8" => 0,
+            "application/json; charset=utf-8" => 0,
+            "application/x-www-form-urlencoded" => 0,
+            _ => 0
+        };
+    }
 }
