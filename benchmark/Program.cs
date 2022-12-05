@@ -41,82 +41,87 @@ var summary = BenchmarkRunner.Run<LengthVsHashCode>();
 */
 public class LengthVsHashCode
 {
-    [Benchmark]
-    public int Switch1New() => NewRoslyn.Switch1();
-    [Benchmark]
-    public int Switch1Old() => OldRoslyn.Switch1();
+    //[Benchmark]
+    //public int Switch1New() => NewRoslyn.Switch1();
+    //[Benchmark]
+    //public int Switch1Old() => OldRoslyn.Switch1();
+
+    //[Benchmark]
+    //public int NotALengthMatchNew() => NewRoslyn.NotALengthMatch();
+    //[Benchmark]
+    //public int NotALengthMatchOld() => OldRoslyn.NotALengthMatch();
+
+    //[Benchmark]
+    //public int DenseNew() => NewRoslyn.Dense();
+    //[Benchmark]
+    //public int DenseOld() => OldRoslyn.Dense();
+
+    //[Benchmark]
+    //public int DenseFewNew() => NewRoslyn.DenseFew();
+    //[Benchmark]
+    //public int DenseFewOld() => OldRoslyn.DenseFew();
+
+    //[Benchmark]
+    //public int SparseNew() => NewRoslyn.Sparse();
+    //[Benchmark]
+    //public int SparseOld() => OldRoslyn.Sparse();
+
+    //[Benchmark]
+    //public int ContentTypeNew() => NewRoslyn.ContentType();
+    //[Benchmark]
+    //public int ContentTypeOld() => OldRoslyn.ContentType();
+    //[Benchmark]
+    //public int ContentTypeAsListPattern() => OldRoslyn.ContentTypeAsListPattern();
+
+    //[Benchmark]
+    //public int CyrusSwitch() => OldRoslyn.CyrusSwitch();
+    //[Benchmark]
+    //public int CyrusTrie() => OldRoslyn.CyrusTrie();
+    //[Benchmark]
+    //public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
+
+    //[Benchmark]
+    //public int ShortSwitch_FirstCase_New() => NewRoslyn.ShortSwitch_FirstCase();
+    //[Benchmark]
+    //public int ShortSwitch_FirstCase_Old() => OldRoslyn.ShortSwitch_FirstCase();
+
+    //[Benchmark]
+    //public int ShortSwitch_SecondCase_New() => NewRoslyn.ShortSwitch_SecondCase();
+    //[Benchmark]
+    //public int ShortSwitch_SecondCase_Old() => OldRoslyn.ShortSwitch_SecondCase();
+
+    //[Benchmark]
+    //public int ShortSwitch_ThirdCase_New() => NewRoslyn.ShortSwitch_ThirdCase();
+    //[Benchmark]
+    //public int ShortSwitch_ThirdCase_Old() => OldRoslyn.ShortSwitch_ThirdCase();
+
+    //[Benchmark]
+    //public int ShortSwitch_FourthCase_New() => NewRoslyn.ShortSwitch_FourthCase();
+    //[Benchmark]
+    //public int ShortSwitch_FourthCase_Old() => OldRoslyn.ShortSwitch_FourthCase();
+
+    //[Benchmark]
+    //public int ShortSwitchLongWords_FirstCase_New() => NewRoslyn.ShortSwitchLongWords_FirstCase();
+    //[Benchmark]
+    //public int ShortSwitchLongWords_FirstCase_Old() => OldRoslyn.ShortSwitchLongWords_FirstCase();
+
+    //[Benchmark]
+    //public int ShortSwitchLongWords_SecondCase_New() => NewRoslyn.ShortSwitchLongWords_SecondCase();
+    //[Benchmark]
+    //public int ShortSwitchLongWords_SecondCase_Old() => OldRoslyn.ShortSwitchLongWords_SecondCase();
+
+    //[Benchmark]
+    //public int ShortSwitchLongWords_ThirdCase_New() => NewRoslyn.ShortSwitchLongWords_ThirdCase();
+    //[Benchmark]
+    //public int ShortSwitchLongWords_ThirdCase_Old() => OldRoslyn.ShortSwitchLongWords_ThirdCase();
+
+    //[Benchmark]
+    //public int ShortSwitchLongWords_FourthCase_New() => NewRoslyn.ShortSwitchLongWords_FourthCase();
+    //[Benchmark]
+    //public int ShortSwitchLongWords_FourthCase_Old() => OldRoslyn.ShortSwitchLongWords_FourthCase();
 
     [Benchmark]
-    public int NotALengthMatchNew() => NewRoslyn.NotALengthMatch();
+    public DriveType GetDriveType_Mix_New() => NewRoslyn.GetDriveType_Mix();
     [Benchmark]
-    public int NotALengthMatchOld() => OldRoslyn.NotALengthMatch();
-
-    [Benchmark]
-    public int DenseNew() => NewRoslyn.Dense();
-    [Benchmark]
-    public int DenseOld() => OldRoslyn.Dense();
-
-    [Benchmark]
-    public int DenseFewNew() => NewRoslyn.DenseFew();
-    [Benchmark]
-    public int DenseFewOld() => OldRoslyn.DenseFew();
-
-    [Benchmark]
-    public int SparseNew() => NewRoslyn.Sparse();
-    [Benchmark]
-    public int SparseOld() => OldRoslyn.Sparse();
-
-    [Benchmark]
-    public int ContentTypeNew() => NewRoslyn.ContentType();
-    [Benchmark]
-    public int ContentTypeOld() => OldRoslyn.ContentType();
-    [Benchmark]
-    public int ContentTypeAsListPattern() => OldRoslyn.ContentTypeAsListPattern();
-
-    [Benchmark]
-    public int CyrusSwitch() => OldRoslyn.CyrusSwitch();
-    [Benchmark]
-    public int CyrusTrie() => OldRoslyn.CyrusTrie();
-    [Benchmark]
-    public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
-
-    [Benchmark]
-    public int ShortSwitch_FirstCase_New() => NewRoslyn.ShortSwitch_FirstCase();
-    [Benchmark]
-    public int ShortSwitch_FirstCase_Old() => OldRoslyn.ShortSwitch_FirstCase();
-
-    [Benchmark]
-    public int ShortSwitch_SecondCase_New() => NewRoslyn.ShortSwitch_SecondCase();
-    [Benchmark]
-    public int ShortSwitch_SecondCase_Old() => OldRoslyn.ShortSwitch_SecondCase();
-
-    [Benchmark]
-    public int ShortSwitch_ThirdCase_New() => NewRoslyn.ShortSwitch_ThirdCase();
-    [Benchmark]
-    public int ShortSwitch_ThirdCase_Old() => OldRoslyn.ShortSwitch_ThirdCase();
-
-    [Benchmark]
-    public int ShortSwitch_FourthCase_New() => NewRoslyn.ShortSwitch_FourthCase();
-    [Benchmark]
-    public int ShortSwitch_FourthCase_Old() => OldRoslyn.ShortSwitch_FourthCase();
-
-    [Benchmark]
-    public int ShortSwitchLongWords_FirstCase_New() => NewRoslyn.ShortSwitchLongWords_FirstCase();
-    [Benchmark]
-    public int ShortSwitchLongWords_FirstCase_Old() => OldRoslyn.ShortSwitchLongWords_FirstCase();
-
-    [Benchmark]
-    public int ShortSwitchLongWords_SecondCase_New() => NewRoslyn.ShortSwitchLongWords_SecondCase();
-    [Benchmark]
-    public int ShortSwitchLongWords_SecondCase_Old() => OldRoslyn.ShortSwitchLongWords_SecondCase();
-
-    [Benchmark]
-    public int ShortSwitchLongWords_ThirdCase_New() => NewRoslyn.ShortSwitchLongWords_ThirdCase();
-    [Benchmark]
-    public int ShortSwitchLongWords_ThirdCase_Old() => OldRoslyn.ShortSwitchLongWords_ThirdCase();
-
-    [Benchmark]
-    public int ShortSwitchLongWords_FourthCase_New() => NewRoslyn.ShortSwitchLongWords_FourthCase();
-    [Benchmark]
-    public int ShortSwitchLongWords_FourthCase_Old() => OldRoslyn.ShortSwitchLongWords_FourthCase();
+    public DriveType GetDriveType_Mix_Old() => OldRoslyn.GetDriveType_Mix();
 }
