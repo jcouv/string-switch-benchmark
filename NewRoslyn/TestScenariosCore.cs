@@ -7174,4 +7174,137 @@ public class TestScenariosCore
                 return DriveType.Unknown;
         }
     }
+
+    public static int DenseWithTwoCandidatesPerBucket_Case1() => DenseWithTwoCandidatesPerBucket("aba");
+    public static int DenseWithTwoCandidatesPerBucket_Case2() => DenseWithTwoCandidatesPerBucket("abb");
+    public static int DenseWithTwoCandidatesPerBucket_Case3() => DenseWithTwoCandidatesPerBucket("baa");
+    public static int DenseWithTwoCandidatesPerBucket_Case4() => DenseWithTwoCandidatesPerBucket("bab");
+    public static int DenseWithTwoCandidatesPerBucket_Case5() => DenseWithTwoCandidatesPerBucket("cdc");
+    public static int DenseWithTwoCandidatesPerBucket_Case6() => DenseWithTwoCandidatesPerBucket("cdd");
+    public static int DenseWithTwoCandidatesPerBucket_Case7() => DenseWithTwoCandidatesPerBucket("dcc");
+    public static int DenseWithTwoCandidatesPerBucket_Case8() => DenseWithTwoCandidatesPerBucket("dcd");
+    public static int DenseWithTwoCandidatesPerBucket_Case9() => DenseWithTwoCandidatesPerBucket("efe");
+    public static int DenseWithTwoCandidatesPerBucket_Case10() => DenseWithTwoCandidatesPerBucket("eff");
+    public static int DenseWithTwoCandidatesPerBucket_Case11() => DenseWithTwoCandidatesPerBucket("fee");
+    public static int DenseWithTwoCandidatesPerBucket_Case12() => DenseWithTwoCandidatesPerBucket("fef");
+
+    private static int DenseWithTwoCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aba" => 0,
+            "abb" => 0,
+            "baa" => 0,
+            "bab" => 0,
+            "cdc" => 0,
+            "cdd" => 0,
+            "dcc" => 0,
+            "dcd" => 0,
+            "efe" => 0,
+            "eff" => 0,
+            "fee" => 0,
+            "fef" => 0,
+            _ => 0,
+        };
+    }
+    public static int DenseWithThreeCandidatesPerBucket_Case1() => DenseWithThreeCandidatesPerBucket("aac");
+    public static int DenseWithThreeCandidatesPerBucket_Case2() => DenseWithThreeCandidatesPerBucket("aba");
+    public static int DenseWithThreeCandidatesPerBucket_Case3() => DenseWithThreeCandidatesPerBucket("acb");
+    public static int DenseWithThreeCandidatesPerBucket_Case4() => DenseWithThreeCandidatesPerBucket("bac");
+    public static int DenseWithThreeCandidatesPerBucket_Case5() => DenseWithThreeCandidatesPerBucket("bba");
+    public static int DenseWithThreeCandidatesPerBucket_Case6() => DenseWithThreeCandidatesPerBucket("bcb");
+    public static int DenseWithThreeCandidatesPerBucket_Case7() => DenseWithThreeCandidatesPerBucket("cac");
+    public static int DenseWithThreeCandidatesPerBucket_Case8() => DenseWithThreeCandidatesPerBucket("cba");
+    public static int DenseWithThreeCandidatesPerBucket_Case9() => DenseWithThreeCandidatesPerBucket("ccb");
+
+    private static int DenseWithThreeCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aac" => 0,
+            "aba" => 0,
+            "acb" => 0,
+            "bac" => 0,
+            "bba" => 0,
+            "bcb" => 0,
+            "cac" => 0,
+            "cba" => 0,
+            "ccb" => 0,
+            _ => 0,
+        };
+    }
+
+    public static int DenseWithFourCandidatesPerBucket_Case1() => DenseWithFourCandidatesPerBucket("aab");
+    public static int DenseWithFourCandidatesPerBucket_Case2() => DenseWithFourCandidatesPerBucket("aba");
+    public static int DenseWithFourCandidatesPerBucket_Case3() => DenseWithFourCandidatesPerBucket("acb");
+    public static int DenseWithFourCandidatesPerBucket_Case4() => DenseWithFourCandidatesPerBucket("adc");
+    public static int DenseWithFourCandidatesPerBucket_Case5() => DenseWithFourCandidatesPerBucket("bad");
+    public static int DenseWithFourCandidatesPerBucket_Case6() => DenseWithFourCandidatesPerBucket("bba");
+    public static int DenseWithFourCandidatesPerBucket_Case7() => DenseWithFourCandidatesPerBucket("bcb");
+    public static int DenseWithFourCandidatesPerBucket_Case8() => DenseWithFourCandidatesPerBucket("bdc");
+    public static int DenseWithFourCandidatesPerBucket_Case9() => DenseWithFourCandidatesPerBucket("cad");
+    public static int DenseWithFourCandidatesPerBucket_Case10() => DenseWithFourCandidatesPerBucket("cba");
+    public static int DenseWithFourCandidatesPerBucket_Case11() => DenseWithFourCandidatesPerBucket("ccb");
+    public static int DenseWithFourCandidatesPerBucket_Case12() => DenseWithFourCandidatesPerBucket("cdc");
+
+    private static int DenseWithFourCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aad" => 0,
+            "aba" => 0,
+            "acb" => 0,
+            "adc" => 0,
+            "bad" => 0,
+            "bba" => 0,
+            "bcb" => 0,
+            "bdc" => 0,
+            "cad" => 0,
+            "cba" => 0,
+            "ccb" => 0,
+            "cdc" => 0,
+            "dad" => 0,
+            "dba" => 0,
+            "dcb" => 0,
+            "ddc" => 0,
+            _ => 0,
+        };
+    }
+
+    public static int SparseWithFourCandidatesPerBucket_Case1() => SparseWithFourCandidatesPerBucket("aay");
+    public static int SparseWithFourCandidatesPerBucket_Case2() => SparseWithFourCandidatesPerBucket("aia");
+    public static int SparseWithFourCandidatesPerBucket_Case3() => SparseWithFourCandidatesPerBucket("aqi");
+    public static int SparseWithFourCandidatesPerBucket_Case4() => SparseWithFourCandidatesPerBucket("ayq");
+    public static int SparseWithFourCandidatesPerBucket_Case5() => SparseWithFourCandidatesPerBucket("iay");
+    public static int SparseWithFourCandidatesPerBucket_Case6() => SparseWithFourCandidatesPerBucket("iia");
+    public static int SparseWithFourCandidatesPerBucket_Case7() => SparseWithFourCandidatesPerBucket("iqi");
+    public static int SparseWithFourCandidatesPerBucket_Case8() => SparseWithFourCandidatesPerBucket("iyq");
+    public static int SparseWithFourCandidatesPerBucket_Case9() => SparseWithFourCandidatesPerBucket("qay");
+    public static int SparseWithFourCandidatesPerBucket_Case10() => SparseWithFourCandidatesPerBucket("qia");
+    public static int SparseWithFourCandidatesPerBucket_Case11() => SparseWithFourCandidatesPerBucket("qqi");
+    public static int SparseWithFourCandidatesPerBucket_Case12() => SparseWithFourCandidatesPerBucket("qyq");
+
+    private static int SparseWithFourCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aay" => 0,
+            "aia" => 0,
+            "aqi" => 0,
+            "ayq" => 0,
+            "iay" => 0,
+            "iia" => 0,
+            "iqi" => 0,
+            "iyq" => 0,
+            "qay" => 0,
+            "qia" => 0,
+            "qqi" => 0,
+            "qyq" => 0,
+            "yay" => 0,
+            "yia" => 0,
+            "yqi" => 0,
+            "yyq" => 0,
+            _ => 0,
+        };
+    }
 }
