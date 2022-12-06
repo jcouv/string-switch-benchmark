@@ -7307,4 +7307,121 @@ public class TestScenariosCore
             _ => 0,
         };
     }
+
+
+    public static int SparseWithFiveCandidatesPerBucket_Case1() => SparseWithFiveCandidatesPerBucket("aaA");
+    public static int SparseWithFiveCandidatesPerBucket_Case2() => SparseWithFiveCandidatesPerBucket("aia");
+    public static int SparseWithFiveCandidatesPerBucket_Case3() => SparseWithFiveCandidatesPerBucket("aqi");
+    public static int SparseWithFiveCandidatesPerBucket_Case4() => SparseWithFiveCandidatesPerBucket("ayq");
+    public static int SparseWithFiveCandidatesPerBucket_Case5() => SparseWithFiveCandidatesPerBucket("aAy");
+    public static int SparseWithFiveCandidatesPerBucket_Case6() => SparseWithFiveCandidatesPerBucket("iaA");
+    public static int SparseWithFiveCandidatesPerBucket_Case7() => SparseWithFiveCandidatesPerBucket("iia");
+    public static int SparseWithFiveCandidatesPerBucket_Case8() => SparseWithFiveCandidatesPerBucket("iqi");
+    public static int SparseWithFiveCandidatesPerBucket_Case9() => SparseWithFiveCandidatesPerBucket("iyq");
+    public static int SparseWithFiveCandidatesPerBucket_Case10() => SparseWithFiveCandidatesPerBucket("iAy");
+    public static int SparseWithFiveCandidatesPerBucket_Case11() => SparseWithFiveCandidatesPerBucket("qaA");
+    public static int SparseWithFiveCandidatesPerBucket_Case12() => SparseWithFiveCandidatesPerBucket("qia");
+    public static int SparseWithFiveCandidatesPerBucket_Case13() => SparseWithFiveCandidatesPerBucket("qqi");
+    public static int SparseWithFiveCandidatesPerBucket_Case14() => SparseWithFiveCandidatesPerBucket("qyq");
+    public static int SparseWithFiveCandidatesPerBucket_Case15() => SparseWithFiveCandidatesPerBucket("qAy");
+
+    private static int SparseWithFiveCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aaA" => 0,
+            "aia" => 0,
+            "aqi" => 0,
+            "ayq" => 0,
+            "aAy" => 0,
+            "iaA" => 0,
+            "iia" => 0,
+            "iqi" => 0,
+            "iyq" => 0,
+            "iAy" => 0,
+            "qaA" => 0,
+            "qia" => 0,
+            "qqi" => 0,
+            "qyq" => 0,
+            "qAy" => 0,
+            "yaA" => 0,
+            "yia" => 0,
+            "yqi" => 0,
+            "yyq" => 0,
+            "yAy" => 0,
+            _ => 0,
+        };
+    }
+
+
+    public static int SparseWithSixCandidatesPerBucket_Case1() => SparseWithSixCandidatesPerBucket("aaI");
+    public static int SparseWithSixCandidatesPerBucket_Case2() => SparseWithSixCandidatesPerBucket("aia");
+    public static int SparseWithSixCandidatesPerBucket_Case3() => SparseWithSixCandidatesPerBucket("aqi");
+    public static int SparseWithSixCandidatesPerBucket_Case4() => SparseWithSixCandidatesPerBucket("ayq");
+    public static int SparseWithSixCandidatesPerBucket_Case5() => SparseWithSixCandidatesPerBucket("aAy");
+    public static int SparseWithSixCandidatesPerBucket_Case6() => SparseWithSixCandidatesPerBucket("aIA");
+    public static int SparseWithSixCandidatesPerBucket_Case7() => SparseWithSixCandidatesPerBucket("iaI");
+    public static int SparseWithSixCandidatesPerBucket_Case8() => SparseWithSixCandidatesPerBucket("iia");
+    public static int SparseWithSixCandidatesPerBucket_Case9() => SparseWithSixCandidatesPerBucket("iqi");
+    public static int SparseWithSixCandidatesPerBucket_Case10() => SparseWithSixCandidatesPerBucket("iyq");
+    public static int SparseWithSixCandidatesPerBucket_Case11() => SparseWithSixCandidatesPerBucket("iAy");
+    public static int SparseWithSixCandidatesPerBucket_Case12() => SparseWithSixCandidatesPerBucket("iIA");
+
+    private static int SparseWithSixCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aaI" => 0,
+            "aia" => 0,
+            "aqi" => 0,
+            "ayq" => 0,
+            "aAy" => 0,
+            "aIA" => 0,
+            "iaI" => 0,
+            "iia" => 0,
+            "iqi" => 0,
+            "iyq" => 0,
+            "iAy" => 0,
+            "iIA" => 0,
+            _ => 0,
+        };
+    }
+
+
+    public static int SparseWithSevenCandidatesPerBucket_Case1() => SparseWithSevenCandidatesPerBucket("aaQ");
+    public static int SparseWithSevenCandidatesPerBucket_Case2() => SparseWithSevenCandidatesPerBucket("aia");
+    public static int SparseWithSevenCandidatesPerBucket_Case3() => SparseWithSevenCandidatesPerBucket("aqi");
+    public static int SparseWithSevenCandidatesPerBucket_Case4() => SparseWithSevenCandidatesPerBucket("ayq");
+    public static int SparseWithSevenCandidatesPerBucket_Case5() => SparseWithSevenCandidatesPerBucket("aAy");
+    public static int SparseWithSevenCandidatesPerBucket_Case6() => SparseWithSevenCandidatesPerBucket("aIA");
+    public static int SparseWithSevenCandidatesPerBucket_Case7() => SparseWithSevenCandidatesPerBucket("aQI");
+    public static int SparseWithSevenCandidatesPerBucket_Case8() => SparseWithSevenCandidatesPerBucket("iaQ");
+    public static int SparseWithSevenCandidatesPerBucket_Case9() => SparseWithSevenCandidatesPerBucket("iia");
+    public static int SparseWithSevenCandidatesPerBucket_Case10() => SparseWithSevenCandidatesPerBucket("iqi");
+    public static int SparseWithSevenCandidatesPerBucket_Case11() => SparseWithSevenCandidatesPerBucket("iyq");
+    public static int SparseWithSevenCandidatesPerBucket_Case12() => SparseWithSevenCandidatesPerBucket("iAy");
+    public static int SparseWithSevenCandidatesPerBucket_Case13() => SparseWithSevenCandidatesPerBucket("iIA");
+    public static int SparseWithSevenCandidatesPerBucket_Case14() => SparseWithSevenCandidatesPerBucket("iQI");
+
+    private static int SparseWithSevenCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "aaQ" => 0,
+            "aia" => 0,
+            "aqi" => 0,
+            "ayq" => 0,
+            "aAy" => 0,
+            "aIA" => 0,
+            "aQI" => 0,
+            "iaQ" => 0,
+            "iia" => 0,
+            "iqi" => 0,
+            "iyq" => 0,
+            "iAy" => 0,
+            "iIA" => 0,
+            "iQI" => 0,
+            _ => 0,
+        };
+    }
 }
