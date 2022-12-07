@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿#nullable disable
+
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
 _ = BenchmarkRunner.Run<LengthVsHashCode>();
@@ -9,7 +11,8 @@ _ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithThreeCandidatesPerBucket>
 _ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithFourCandidatesPerBucket>();
 _ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithFourCandidatesPerBucket>();
 _ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithFiveCandidatesPerBucket>();
-
+_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSixCandidatesPerBucket>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSevenCandidatesPerBucket>();
 
 /*
 |                                           Method |          Mean |      Error |     StdDev |
@@ -636,54 +639,54 @@ _ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithFiveCandidatesPerBucket>();
 */
 public partial class LengthVsHashCode
 {
-    //[Benchmark]
-    //public int Switch1New() => NewRoslyn.Switch1();
-    //[Benchmark]
-    //public int Switch1Old() => OldRoslyn.Switch1();
+    [Benchmark]
+    public int Switch1New() => NewRoslyn.Switch1();
+    [Benchmark]
+    public int Switch1Old() => OldRoslyn.Switch1();
 
-    //[Benchmark]
-    //public int NotALengthMatchNew() => NewRoslyn.NotALengthMatch();
-    //[Benchmark]
-    //public int NotALengthMatchOld() => OldRoslyn.NotALengthMatch();
+    [Benchmark]
+    public int NotALengthMatchNew() => NewRoslyn.NotALengthMatch();
+    [Benchmark]
+    public int NotALengthMatchOld() => OldRoslyn.NotALengthMatch();
 
-    //[Benchmark]
-    //public int DenseNew() => NewRoslyn.Dense();
-    //[Benchmark]
-    //public int DenseOld() => OldRoslyn.Dense();
+    [Benchmark]
+    public int DenseNew() => NewRoslyn.Dense();
+    [Benchmark]
+    public int DenseOld() => OldRoslyn.Dense();
 
-    //[Benchmark]
-    //public int DenseFew_Match_New() => NewRoslyn.DenseFew_Match();
-    //[Benchmark]
-    //public int DenseFew_Match_Old() => OldRoslyn.DenseFew_Match();
+    [Benchmark]
+    public int DenseFew_Match_New() => NewRoslyn.DenseFew_Match();
+    [Benchmark]
+    public int DenseFew_Match_Old() => OldRoslyn.DenseFew_Match();
 
-    //[Benchmark]
-    //public int DenseFew_DoesNotMatch_New() => NewRoslyn.DenseFew_DoesNotMatch();
-    //[Benchmark]
-    //public int DenseFew_DoesNotMatch_Old() => OldRoslyn.DenseFew_DoesNotMatch();
+    [Benchmark]
+    public int DenseFew_DoesNotMatch_New() => NewRoslyn.DenseFew_DoesNotMatch();
+    [Benchmark]
+    public int DenseFew_DoesNotMatch_Old() => OldRoslyn.DenseFew_DoesNotMatch();
 
-    //[Benchmark]
-    //public int SparseFew_Match_New() => NewRoslyn.SparseFew_Match();
-    //[Benchmark]
-    //public int SparseFew_Match_Old() => OldRoslyn.SparseFew_Match();
+    [Benchmark]
+    public int SparseFew_Match_New() => NewRoslyn.SparseFew_Match();
+    [Benchmark]
+    public int SparseFew_Match_Old() => OldRoslyn.SparseFew_Match();
 
-    //[Benchmark]
-    //public int SparseFew_DoesNotMatch_New() => NewRoslyn.SparseFew_DoesNotMatch();
-    //[Benchmark]
-    //public int SparseFew_DoesNotMatch_Old() => OldRoslyn.SparseFew_DoesNotMatch();
+    [Benchmark]
+    public int SparseFew_DoesNotMatch_New() => NewRoslyn.SparseFew_DoesNotMatch();
+    [Benchmark]
+    public int SparseFew_DoesNotMatch_Old() => OldRoslyn.SparseFew_DoesNotMatch();
 
-    //[Benchmark]
-    //public int ContentTypeNew() => NewRoslyn.ContentType();
-    //[Benchmark]
-    //public int ContentTypeOld() => OldRoslyn.ContentType();
-    //[Benchmark]
-    //public int ContentTypeAsListPattern() => OldRoslyn.ContentTypeAsListPattern();
+    [Benchmark]
+    public int ContentTypeNew() => NewRoslyn.ContentType();
+    [Benchmark]
+    public int ContentTypeOld() => OldRoslyn.ContentType();
+    [Benchmark]
+    public int ContentTypeAsListPattern() => OldRoslyn.ContentTypeAsListPattern();
 
-    //[Benchmark]
-    //public int CyrusSwitch() => OldRoslyn.CyrusSwitch();
-    //[Benchmark]
-    //public int CyrusTrie() => OldRoslyn.CyrusTrie();
-    //[Benchmark]
-    //public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
+    [Benchmark]
+    public int CyrusSwitch() => OldRoslyn.CyrusSwitch();
+    [Benchmark]
+    public int CyrusTrie() => OldRoslyn.CyrusTrie();
+    [Benchmark]
+    public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
 }
 public class LengthVsHashCode_ShortSwitch
 {
@@ -775,47 +778,51 @@ public partial class LengthVsHashCode_SparseWithFiveCandidatesPerBucket
     [Benchmark]
     public int SparseWithFiveCandidatesPerBucket_Trie() => OldRoslyn.SparseWithFiveCandidatesPerBucketTrie(Value);
 }
-public partial class LengthVsHashCode
+public partial class LengthVsHashCode_SparseWithSixCandidatesPerBucket
 {
-    //[Benchmark]
-    //public int SparseWithSixCandidatesPerBucket_New() => NewRoslyn.SparseWithSixCandidatesPerBucket_Case1();
-    //[Benchmark]
-    //public int SparseWithSixCandidatesPerBucket_Old() => OldRoslyn.SparseWithSixCandidatesPerBucket_Case1();
+    [Params("aaI", "aia", "aqi", "ayq", "aAy", "aIA", "iaI", "iia", "iqi", "iyq", "iAy", "iIA")]
+    public string Value { get; set; }
+
+    [Benchmark]
+    public int SparseWithSixCandidatesPerBucket_New() => NewRoslyn.SparseWithSixCandidatesPerBucket(Value);
+    [Benchmark]
+    public int SparseWithSixCandidatesPerBucket_Old() => OldRoslyn.SparseWithSixCandidatesPerBucket(Value);
+}
+public partial class LengthVsHashCode_SparseWithSevenCandidatesPerBucket
+{
+    [Params("aaQ", "aia", "aqi", "ayq", "aAy", "aIA", "aQI", "iaQ", "iia", "iqi", "iyq", "iAy", "iIA", "iQI")]
+    public string Value { get; set; }
+
+    [Benchmark]
+    public int SparseWithSevenCandidatesPerBucket_New() => NewRoslyn.SparseWithSevenCandidatesPerBucket(Value);
+    [Benchmark]
+    public int SparseWithSevenCandidatesPerBucket_Old() => OldRoslyn.SparseWithSevenCandidatesPerBucket(Value);
 }
 public partial class LengthVsHashCode
 {
+    [Benchmark]
+    public int GetHashCodeBenchmark()
+    {
+        int last = 0;
+        for (int i = 0; i < 1000; i++)
+        {
+            last = "hello world".GetHashCode();
+        }
+        return last;
+    }
 
-    //[Benchmark]
-    //public int SparseWithSevenCandidatesPerBucket_New() => NewRoslyn.SparseWithSevenCandidatesPerBucket_Case1();
-    //[Benchmark]
-    //public int SparseWithSevenCandidatesPerBucket_Old() => OldRoslyn.SparseWithSevenCandidatesPerBucket_Case1();
-}
-public partial class LengthVsHashCode
-{
-
-    //[Benchmark]
-    //public int GetHashCodeBenchmark()
-    //{
-    //    int last = 0;
-    //    for (int i = 0; i < 1000; i++)
-    //    {
-    //        last = "hello world".GetHashCode();
-    //    }
-    //    return last;
-    //}
-
-    //string field = "hello world";
-    //[Benchmark]
-    //public int StringEquality()
-    //{
-    //    string value = field;
-    //    string other = "hello worl";
-    //    other += "d";
-    //    int last = 0;
-    //    for (int i = 0; i < 1000; i++)
-    //    {
-    //        last = other == value ? 0 : 1;
-    //    }
-    //    return last;
-    //}
+    string field = "hello world";
+    [Benchmark]
+    public int StringEquality()
+    {
+        string value = field;
+        string other = "hello worl";
+        other += "d";
+        int last = 0;
+        for (int i = 0; i < 1000; i++)
+        {
+            last = other == value ? 0 : 1;
+        }
+        return last;
+    }
 }

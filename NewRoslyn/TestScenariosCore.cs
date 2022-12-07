@@ -7661,7 +7661,7 @@ public class TestScenariosCore
         };
     }
 
-    private static int SparseWithSixCandidatesPerBucket(string s)
+    public static int SparseWithSixCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7681,7 +7681,7 @@ public class TestScenariosCore
         };
     }
 
-    private static int SparseWithSevenCandidatesPerBucket(string s)
+    public static int SparseWithSevenCandidatesPerBucket(string s)
     {
         return s switch
         {
