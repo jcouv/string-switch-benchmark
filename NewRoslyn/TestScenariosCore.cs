@@ -1,11 +1,6 @@
 ﻿
 public class TestScenariosCore
 {
-    // TODO2 dimensions:
-    // - high vs. low match rate
-    // - long vs. short cases
-    // - long vs. short inputs
-    // - dense vs. sparse cases for a given length
     public static int Switch1()
     {
         int y = 0;
@@ -113,43 +108,77 @@ public class TestScenariosCore
         return y;
     }
 
-    public static int DenseFew()
+    public static int DenseFew_Match()
     {
         int y = 42;
-        foreach (var x in Enumerable.Range(0, 10))
+        foreach (var x in new[] { "00", "01", "02", "03", "04", "05"})
         {
-            y += x.ToString("D2") switch
-            {
-                "00" => 0,
-                "01" => 0,
-                "02" => 0,
-                "03" => 0,
-                "04" => 0,
-                "05" => 0,
-                _ => 0,
-            };
+            y += DenseFew(x);
         }
         return y;
     }
 
-    public static int Sparse()
+    public static int DenseFew_DoesNotMatch()
     {
         int y = 42;
-        foreach (var x in Enumerable.Range(0, 99))
+        foreach (var x in new[] { "09", "10" })
         {
-            y += x.ToString("D2") switch
-            {
-                "00" => 0,
-                "05" => 0,
-                "50" => 0,
-                "59" => 0,
-                "95" => 0,
-                "99" => 0,
-                _ => 0,
-            };
+            y += DenseFew(x);
         }
         return y;
     }
+
+    private static int DenseFew(string x)
+    {
+        return x switch
+        {
+            "00" => 0,
+            "01" => 0,
+            "02" => 0,
+            "03" => 0,
+            "04" => 0,
+            "05" => 0,
+            _ => 0,
+        };
+    }
+
+    // TODO2 separate success and failure cases
+
+    public static int SparseFew_Match()
+    {
+        int y = 42;
+        foreach (var s in new[] { "00", "05", "50", "59", "95", "99" })
+        {
+            y += SparseFew(s);
+        }
+        return y;
+    }
+
+    public static int SparseFew_DoesNotMatch()
+    {
+        int y = 42;
+        foreach (var s in new[] { "10", "01" })
+        {
+            y += SparseFew(s);
+        }
+        return y;
+    }
+
+    private static int SparseFew(string s)
+    {
+        return s switch
+        {
+            "00" => 0,
+            "05" => 0,
+            "50" => 0,
+            "59" => 0,
+            "95" => 0,
+            "99" => 0,
+            _ => 0,
+        };
+    }
+
+    // TODO2 separate success and failure cases
 
     public static int ContentType()
     {
@@ -4041,6 +4070,7 @@ public class TestScenariosCore
         }
     }
 
+    // TODO2 try with pointer arithmetic
     public static int CyrusTrieWithoutOptimizations()
     {
         foreach (var x in new[] { "hello", "world" })
@@ -7207,6 +7237,8 @@ public class TestScenariosCore
             _ => 0,
         };
     }
+
+
     public static int DenseWithThreeCandidatesPerBucket_Case1() => DenseWithThreeCandidatesPerBucket("aac");
     public static int DenseWithThreeCandidatesPerBucket_Case2() => DenseWithThreeCandidatesPerBucket("aba");
     public static int DenseWithThreeCandidatesPerBucket_Case3() => DenseWithThreeCandidatesPerBucket("acb");
@@ -7233,6 +7265,57 @@ public class TestScenariosCore
             _ => 0,
         };
     }
+
+
+    public static int SparseLongWithThreeCandidatesPerBucket_Case1() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aaq");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case2() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aia");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case3() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aqi");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case4() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iaq");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case5() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iia");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case6() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iqi");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case7() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qaq");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case8() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qia");
+    public static int SparseLongWithThreeCandidatesPerBucket_Case9() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qqi");
+    public static int SparseLongWithThreeCandidatesPerBucket_Mix()
+    {
+        int last = 0;
+        foreach (var s in new[]
+            {
+                "xxxxx-xxxxx-xxxxx-xxxxx-aaq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iaq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qaq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qqi"
+            })
+        {
+            last = SparseLongWithThreeCandidatesPerBucket(s);
+        }
+
+        return last;
+    }
+
+    private static int SparseLongWithThreeCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "xxxxx-xxxxx-xxxxx-xxxxx-aaq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iaq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qaq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qqi" => 0,
+            _ => 0,
+        };
+    }
+
+
 
     public static int DenseWithFourCandidatesPerBucket_Case1() => DenseWithFourCandidatesPerBucket("aab");
     public static int DenseWithFourCandidatesPerBucket_Case2() => DenseWithFourCandidatesPerBucket("aba");
@@ -7271,6 +7354,7 @@ public class TestScenariosCore
         };
     }
 
+
     public static int SparseWithFourCandidatesPerBucket_Case1() => SparseWithFourCandidatesPerBucket("aay");
     public static int SparseWithFourCandidatesPerBucket_Case2() => SparseWithFourCandidatesPerBucket("aia");
     public static int SparseWithFourCandidatesPerBucket_Case3() => SparseWithFourCandidatesPerBucket("aqi");
@@ -7304,6 +7388,44 @@ public class TestScenariosCore
             "yia" => 0,
             "yqi" => 0,
             "yyq" => 0,
+            _ => 0,
+        };
+    }
+
+
+    public static int SparseLongWithFourCandidatesPerBucket_Case1() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aay");
+    public static int SparseLongWithFourCandidatesPerBucket_Case2() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aia");
+    public static int SparseLongWithFourCandidatesPerBucket_Case3() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aqi");
+    public static int SparseLongWithFourCandidatesPerBucket_Case4() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-ayq");
+    public static int SparseLongWithFourCandidatesPerBucket_Case5() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iay");
+    public static int SparseLongWithFourCandidatesPerBucket_Case6() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iia");
+    public static int SparseLongWithFourCandidatesPerBucket_Case7() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iqi");
+    public static int SparseLongWithFourCandidatesPerBucket_Case8() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iyq");
+    public static int SparseLongWithFourCandidatesPerBucket_Case9() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qay");
+    public static int SparseLongWithFourCandidatesPerBucket_Case10() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qia");
+    public static int SparseLongWithFourCandidatesPerBucket_Case11() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qqi");
+    public static int SparseLongWithFourCandidatesPerBucket_Case12() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qyq");
+
+    private static int SparseLongWithFourCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "xxxxx-xxxxx-xxxxx-xxxxx-aay" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-ayq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iay" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iyq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qay" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qyq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yay" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yyq" => 0,
             _ => 0,
         };
     }
@@ -7349,6 +7471,85 @@ public class TestScenariosCore
             "yqi" => 0,
             "yyq" => 0,
             "yAy" => 0,
+            _ => 0,
+        };
+    }
+
+
+
+    public static int SparseLongWithFiveCandidatesPerBucket_Case1() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aaA");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case2() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aia");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case3() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aqi");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case4() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-ayq");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case5() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aAy");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case6() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iaA");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case7() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iia");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case8() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iqi");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case9() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iyq");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case10() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iAy");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case11() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qaA");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case12() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qia");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case13() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qqi");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case14() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qyq");
+    public static int SparseLongWithFiveCandidatesPerBucket_Case15() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qAy");
+
+    public static int SparseLongWithFiveCandidatesPerBucket_Mix()
+    {
+        int last = 0;
+        foreach (var s in new[]
+            {
+                "xxxxx-xxxxx-xxxxx-xxxxx-aaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-ayq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aAy",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iyq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iAy",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qyq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qAy",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yyq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yAy"
+           })
+        {
+            last = SparseLongWithThreeCandidatesPerBucket(s);
+        }
+
+        return last;
+    }
+
+    private static int SparseLongWithFiveCandidatesPerBucket(string s)
+    {
+        return s switch
+        {
+            "xxxxx-xxxxx-xxxxx-xxxxx-aaA" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-ayq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-aAy" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iaA" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iyq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-iAy" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qaA" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qyq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-qAy" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yaA" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yia" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yqi" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yyq" => 0,
+            "xxxxx-xxxxx-xxxxx-xxxxx-yAy" => 0,
             _ => 0,
         };
     }
