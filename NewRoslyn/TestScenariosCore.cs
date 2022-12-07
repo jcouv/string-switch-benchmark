@@ -111,7 +111,7 @@ public class TestScenariosCore
     public static int DenseFew_Match()
     {
         int y = 42;
-        foreach (var x in new[] { "00", "01", "02", "03", "04", "05"})
+        foreach (var x in new[] { "00", "01", "02", "03", "04", "05" })
         {
             y += DenseFew(x);
         }
@@ -6876,19 +6876,7 @@ public class TestScenariosCore
         }
     }
 
-    public static int ShortSwitch_FirstCase()
-        => ShortSwitchCore("GET");
-
-    public static int ShortSwitch_SecondCase()
-        => ShortSwitchCore("POST");
-
-    public static int ShortSwitch_ThirdCase()
-        => ShortSwitchCore("PUT");
-
-    public static int ShortSwitch_FourthCase()
-        => ShortSwitchCore("DELETE");
-
-    private static int ShortSwitchCore(string s)
+    public static int ShortSwitchCore(string s)
     {
         return s switch
         {
@@ -7205,20 +7193,7 @@ public class TestScenariosCore
         }
     }
 
-    public static int DenseWithTwoCandidatesPerBucket_Case1() => DenseWithTwoCandidatesPerBucket("aba");
-    public static int DenseWithTwoCandidatesPerBucket_Case2() => DenseWithTwoCandidatesPerBucket("abb");
-    public static int DenseWithTwoCandidatesPerBucket_Case3() => DenseWithTwoCandidatesPerBucket("baa");
-    public static int DenseWithTwoCandidatesPerBucket_Case4() => DenseWithTwoCandidatesPerBucket("bab");
-    public static int DenseWithTwoCandidatesPerBucket_Case5() => DenseWithTwoCandidatesPerBucket("cdc");
-    public static int DenseWithTwoCandidatesPerBucket_Case6() => DenseWithTwoCandidatesPerBucket("cdd");
-    public static int DenseWithTwoCandidatesPerBucket_Case7() => DenseWithTwoCandidatesPerBucket("dcc");
-    public static int DenseWithTwoCandidatesPerBucket_Case8() => DenseWithTwoCandidatesPerBucket("dcd");
-    public static int DenseWithTwoCandidatesPerBucket_Case9() => DenseWithTwoCandidatesPerBucket("efe");
-    public static int DenseWithTwoCandidatesPerBucket_Case10() => DenseWithTwoCandidatesPerBucket("eff");
-    public static int DenseWithTwoCandidatesPerBucket_Case11() => DenseWithTwoCandidatesPerBucket("fee");
-    public static int DenseWithTwoCandidatesPerBucket_Case12() => DenseWithTwoCandidatesPerBucket("fef");
-
-    private static int DenseWithTwoCandidatesPerBucket(string s)
+    public static int DenseWithTwoCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7238,18 +7213,7 @@ public class TestScenariosCore
         };
     }
 
-
-    public static int DenseWithThreeCandidatesPerBucket_Case1() => DenseWithThreeCandidatesPerBucket("aac");
-    public static int DenseWithThreeCandidatesPerBucket_Case2() => DenseWithThreeCandidatesPerBucket("aba");
-    public static int DenseWithThreeCandidatesPerBucket_Case3() => DenseWithThreeCandidatesPerBucket("acb");
-    public static int DenseWithThreeCandidatesPerBucket_Case4() => DenseWithThreeCandidatesPerBucket("bac");
-    public static int DenseWithThreeCandidatesPerBucket_Case5() => DenseWithThreeCandidatesPerBucket("bba");
-    public static int DenseWithThreeCandidatesPerBucket_Case6() => DenseWithThreeCandidatesPerBucket("bcb");
-    public static int DenseWithThreeCandidatesPerBucket_Case7() => DenseWithThreeCandidatesPerBucket("cac");
-    public static int DenseWithThreeCandidatesPerBucket_Case8() => DenseWithThreeCandidatesPerBucket("cba");
-    public static int DenseWithThreeCandidatesPerBucket_Case9() => DenseWithThreeCandidatesPerBucket("ccb");
-
-    private static int DenseWithThreeCandidatesPerBucket(string s)
+    public static int DenseWithThreeCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7266,16 +7230,6 @@ public class TestScenariosCore
         };
     }
 
-
-    public static int SparseLongWithThreeCandidatesPerBucket_Case1() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aaq");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case2() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aia");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case3() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aqi");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case4() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iaq");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case5() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iia");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case6() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iqi");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case7() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qaq");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case8() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qia");
-    public static int SparseLongWithThreeCandidatesPerBucket_Case9() => SparseLongWithThreeCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qqi");
     public static int SparseLongWithThreeCandidatesPerBucket_Mix()
     {
         int last = 0;
@@ -7298,7 +7252,7 @@ public class TestScenariosCore
         return last;
     }
 
-    private static int SparseLongWithThreeCandidatesPerBucket(string s)
+    public static int SparseLongWithThreeCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7316,21 +7270,7 @@ public class TestScenariosCore
     }
 
 
-
-    public static int DenseWithFourCandidatesPerBucket_Case1() => DenseWithFourCandidatesPerBucket("aab");
-    public static int DenseWithFourCandidatesPerBucket_Case2() => DenseWithFourCandidatesPerBucket("aba");
-    public static int DenseWithFourCandidatesPerBucket_Case3() => DenseWithFourCandidatesPerBucket("acb");
-    public static int DenseWithFourCandidatesPerBucket_Case4() => DenseWithFourCandidatesPerBucket("adc");
-    public static int DenseWithFourCandidatesPerBucket_Case5() => DenseWithFourCandidatesPerBucket("bad");
-    public static int DenseWithFourCandidatesPerBucket_Case6() => DenseWithFourCandidatesPerBucket("bba");
-    public static int DenseWithFourCandidatesPerBucket_Case7() => DenseWithFourCandidatesPerBucket("bcb");
-    public static int DenseWithFourCandidatesPerBucket_Case8() => DenseWithFourCandidatesPerBucket("bdc");
-    public static int DenseWithFourCandidatesPerBucket_Case9() => DenseWithFourCandidatesPerBucket("cad");
-    public static int DenseWithFourCandidatesPerBucket_Case10() => DenseWithFourCandidatesPerBucket("cba");
-    public static int DenseWithFourCandidatesPerBucket_Case11() => DenseWithFourCandidatesPerBucket("ccb");
-    public static int DenseWithFourCandidatesPerBucket_Case12() => DenseWithFourCandidatesPerBucket("cdc");
-
-    private static int DenseWithFourCandidatesPerBucket(string s)
+    public static int DenseWithFourCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7354,19 +7294,6 @@ public class TestScenariosCore
         };
     }
 
-
-    public static int SparseWithFourCandidatesPerBucket_Case1() => SparseWithFourCandidatesPerBucket("aay");
-    public static int SparseWithFourCandidatesPerBucket_Case2() => SparseWithFourCandidatesPerBucket("aia");
-    public static int SparseWithFourCandidatesPerBucket_Case3() => SparseWithFourCandidatesPerBucket("aqi");
-    public static int SparseWithFourCandidatesPerBucket_Case4() => SparseWithFourCandidatesPerBucket("ayq");
-    public static int SparseWithFourCandidatesPerBucket_Case5() => SparseWithFourCandidatesPerBucket("iay");
-    public static int SparseWithFourCandidatesPerBucket_Case6() => SparseWithFourCandidatesPerBucket("iia");
-    public static int SparseWithFourCandidatesPerBucket_Case7() => SparseWithFourCandidatesPerBucket("iqi");
-    public static int SparseWithFourCandidatesPerBucket_Case8() => SparseWithFourCandidatesPerBucket("iyq");
-    public static int SparseWithFourCandidatesPerBucket_Case9() => SparseWithFourCandidatesPerBucket("qay");
-    public static int SparseWithFourCandidatesPerBucket_Case10() => SparseWithFourCandidatesPerBucket("qia");
-    public static int SparseWithFourCandidatesPerBucket_Case11() => SparseWithFourCandidatesPerBucket("qqi");
-    public static int SparseWithFourCandidatesPerBucket_Case12() => SparseWithFourCandidatesPerBucket("qyq");
 
     private static int SparseWithFourCandidatesPerBucket(string s)
     {
@@ -7393,20 +7320,7 @@ public class TestScenariosCore
     }
 
 
-    public static int SparseLongWithFourCandidatesPerBucket_Case1() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aay");
-    public static int SparseLongWithFourCandidatesPerBucket_Case2() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aia");
-    public static int SparseLongWithFourCandidatesPerBucket_Case3() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aqi");
-    public static int SparseLongWithFourCandidatesPerBucket_Case4() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-ayq");
-    public static int SparseLongWithFourCandidatesPerBucket_Case5() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iay");
-    public static int SparseLongWithFourCandidatesPerBucket_Case6() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iia");
-    public static int SparseLongWithFourCandidatesPerBucket_Case7() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iqi");
-    public static int SparseLongWithFourCandidatesPerBucket_Case8() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iyq");
-    public static int SparseLongWithFourCandidatesPerBucket_Case9() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qay");
-    public static int SparseLongWithFourCandidatesPerBucket_Case10() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qia");
-    public static int SparseLongWithFourCandidatesPerBucket_Case11() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qqi");
-    public static int SparseLongWithFourCandidatesPerBucket_Case12() => SparseLongWithFourCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qyq");
-
-    private static int SparseLongWithFourCandidatesPerBucket(string s)
+    public static int SparseLongWithFourCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7430,24 +7344,7 @@ public class TestScenariosCore
         };
     }
 
-
-    public static int SparseWithFiveCandidatesPerBucket_Case1() => SparseWithFiveCandidatesPerBucket("aaA");
-    public static int SparseWithFiveCandidatesPerBucket_Case2() => SparseWithFiveCandidatesPerBucket("aia");
-    public static int SparseWithFiveCandidatesPerBucket_Case3() => SparseWithFiveCandidatesPerBucket("aqi");
-    public static int SparseWithFiveCandidatesPerBucket_Case4() => SparseWithFiveCandidatesPerBucket("ayq");
-    public static int SparseWithFiveCandidatesPerBucket_Case5() => SparseWithFiveCandidatesPerBucket("aAy");
-    public static int SparseWithFiveCandidatesPerBucket_Case6() => SparseWithFiveCandidatesPerBucket("iaA");
-    public static int SparseWithFiveCandidatesPerBucket_Case7() => SparseWithFiveCandidatesPerBucket("iia");
-    public static int SparseWithFiveCandidatesPerBucket_Case8() => SparseWithFiveCandidatesPerBucket("iqi");
-    public static int SparseWithFiveCandidatesPerBucket_Case9() => SparseWithFiveCandidatesPerBucket("iyq");
-    public static int SparseWithFiveCandidatesPerBucket_Case10() => SparseWithFiveCandidatesPerBucket("iAy");
-    public static int SparseWithFiveCandidatesPerBucket_Case11() => SparseWithFiveCandidatesPerBucket("qaA");
-    public static int SparseWithFiveCandidatesPerBucket_Case12() => SparseWithFiveCandidatesPerBucket("qia");
-    public static int SparseWithFiveCandidatesPerBucket_Case13() => SparseWithFiveCandidatesPerBucket("qqi");
-    public static int SparseWithFiveCandidatesPerBucket_Case14() => SparseWithFiveCandidatesPerBucket("qyq");
-    public static int SparseWithFiveCandidatesPerBucket_Case15() => SparseWithFiveCandidatesPerBucket("qAy");
-
-    private static int SparseWithFiveCandidatesPerBucket(string s)
+    public static int SparseWithFiveCandidatesPerBucket(string s)
     {
         return s switch
         {
@@ -7476,22 +7373,54 @@ public class TestScenariosCore
     }
 
 
+    public static int SparseWithFiveCandidatesPerBucketTrie(string input)
+    {
+        return input.Length switch
+        {
+            3 => input[0] switch
+            {
+                'a' => input[1] switch
+                {
+                    'A' => input[2] == 'y' ? /* match 'aAy' */ 0 : -1,
+                    'a' => input[2] == 'A' ? /* match 'aaA' */ 1 : -1,
+                    'i' => input[2] == 'a' ? /* match 'aia' */ 2 : -1,
+                    'q' => input[2] == 'i' ? /* match 'aqi' */ 3 : -1,
+                    'y' => input[2] == 'q' ? /* match 'ayq' */ 4 : -1,
+                    _ => -1,
+                },
+                'i' => input[1] switch
+                {
+                    'A' => input[2] == 'y' ? /* match 'iAy' */ 5 : -1,
+                    'a' => input[2] == 'A' ? /* match 'iaA' */ 6 : -1,
+                    'i' => input[2] == 'a' ? /* match 'iia' */ 7 : -1,
+                    'q' => input[2] == 'i' ? /* match 'iqi' */ 8 : -1,
+                    'y' => input[2] == 'q' ? /* match 'iyq' */ 9 : -1,
+                    _ => -1,
+                },
+                'q' => input[1] switch
+                {
+                    'A' => input[2] == 'y' ? /* match 'qAy' */ 10 : -1,
+                    'a' => input[2] == 'A' ? /* match 'qaA' */ 11 : -1,
+                    'i' => input[2] == 'a' ? /* match 'qia' */ 12 : -1,
+                    'q' => input[2] == 'i' ? /* match 'qqi' */ 13 : -1,
+                    'y' => input[2] == 'q' ? /* match 'qyq' */ 14 : -1,
+                    _ => -1,
+                },
+                'y' => input[1] switch
+                {
+                    'A' => input[2] == 'y' ? /* match 'yAy' */ 15 : -1,
+                    'a' => input[2] == 'A' ? /* match 'yaA' */ 16 : -1,
+                    'i' => input[2] == 'a' ? /* match 'yia' */ 17 : -1,
+                    'q' => input[2] == 'i' ? /* match 'yqi' */ 18 : -1,
+                    'y' => input[2] == 'q' ? /* match 'yyq' */ 19 : -1,
+                    _ => -1,
+                },
+                _ => -1,
+            },
+            _ => -1,
+        };
+    }
 
-    public static int SparseLongWithFiveCandidatesPerBucket_Case1() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aaA");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case2() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aia");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case3() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aqi");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case4() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-ayq");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case5() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-aAy");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case6() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iaA");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case7() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iia");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case8() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iqi");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case9() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iyq");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case10() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-iAy");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case11() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qaA");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case12() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qia");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case13() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qqi");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case14() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qyq");
-    public static int SparseLongWithFiveCandidatesPerBucket_Case15() => SparseLongWithFiveCandidatesPerBucket("xxxxx-xxxxx-xxxxx-xxxxx-qAy");
 
     public static int SparseLongWithFiveCandidatesPerBucket_Mix()
     {
@@ -7520,7 +7449,7 @@ public class TestScenariosCore
                 "xxxxx-xxxxx-xxxxx-xxxxx-yAy"
            })
         {
-            last = SparseLongWithThreeCandidatesPerBucket(s);
+            last = SparseLongWithFiveCandidatesPerBucket(s);
         }
 
         return last;
@@ -7555,18 +7484,182 @@ public class TestScenariosCore
     }
 
 
-    public static int SparseWithSixCandidatesPerBucket_Case1() => SparseWithSixCandidatesPerBucket("aaI");
-    public static int SparseWithSixCandidatesPerBucket_Case2() => SparseWithSixCandidatesPerBucket("aia");
-    public static int SparseWithSixCandidatesPerBucket_Case3() => SparseWithSixCandidatesPerBucket("aqi");
-    public static int SparseWithSixCandidatesPerBucket_Case4() => SparseWithSixCandidatesPerBucket("ayq");
-    public static int SparseWithSixCandidatesPerBucket_Case5() => SparseWithSixCandidatesPerBucket("aAy");
-    public static int SparseWithSixCandidatesPerBucket_Case6() => SparseWithSixCandidatesPerBucket("aIA");
-    public static int SparseWithSixCandidatesPerBucket_Case7() => SparseWithSixCandidatesPerBucket("iaI");
-    public static int SparseWithSixCandidatesPerBucket_Case8() => SparseWithSixCandidatesPerBucket("iia");
-    public static int SparseWithSixCandidatesPerBucket_Case9() => SparseWithSixCandidatesPerBucket("iqi");
-    public static int SparseWithSixCandidatesPerBucket_Case10() => SparseWithSixCandidatesPerBucket("iyq");
-    public static int SparseWithSixCandidatesPerBucket_Case11() => SparseWithSixCandidatesPerBucket("iAy");
-    public static int SparseWithSixCandidatesPerBucket_Case12() => SparseWithSixCandidatesPerBucket("iIA");
+    public static int SparseLongWithFiveCandidatesPerBucketTrie_Mix()
+    {
+        int last = 0;
+        foreach (var s in new[]
+            {
+                "xxxxx-xxxxx-xxxxx-xxxxx-aaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-ayq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-aAy",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iyq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-iAy",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qyq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-qAy",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yaA",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yia",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yqi",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yyq",
+                "xxxxx-xxxxx-xxxxx-xxxxx-yAy"
+           })
+        {
+            last = SparseLongWithFiveCandidatesPerBucketTrie(s);
+        }
+
+        return last;
+    }
+
+    static int SparseLongWithFiveCandidatesPerBucketTrie(string input)
+    {
+        return input.Length switch
+        {
+            27 => input[0] switch
+            {
+                'x' => input[1] switch
+                {
+                    'x' => input[2] switch
+                    {
+                        'x' => input[3] switch
+                        {
+                            'x' => input[4] switch
+                            {
+                                'x' => input[5] switch
+                                {
+                                    '-' => input[6] switch
+                                    {
+                                        'x' => input[7] switch
+                                        {
+                                            'x' => input[8] switch
+                                            {
+                                                'x' => input[9] switch
+                                                {
+                                                    'x' => input[10] switch
+                                                    {
+                                                        'x' => input[11] switch
+                                                        {
+                                                            '-' => input[12] switch
+                                                            {
+                                                                'x' => input[13] switch
+                                                                {
+                                                                    'x' => input[14] switch
+                                                                    {
+                                                                        'x' => input[15] switch
+                                                                        {
+                                                                            'x' => input[16] switch
+                                                                            {
+                                                                                'x' => input[17] switch
+                                                                                {
+                                                                                    '-' => input[18] switch
+                                                                                    {
+                                                                                        'x' => input[19] switch
+                                                                                        {
+                                                                                            'x' => input[20] switch
+                                                                                            {
+                                                                                                'x' => input[21] switch
+                                                                                                {
+                                                                                                    'x' => input[22] switch
+                                                                                                    {
+                                                                                                        'x' => input[23] switch
+                                                                                                        {
+                                                                                                            '-' => input[24] switch
+                                                                                                            {
+                                                                                                                'a' => input[25] switch
+                                                                                                                {
+                                                                                                                    'A' => input[26] == 'y' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-aAy' */ 0 : -1,
+                                                                                                                    'a' => input[26] == 'A' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-aaA' */ 1 : -1,
+                                                                                                                    'i' => input[26] == 'a' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-aia' */ 2 : -1,
+                                                                                                                    'q' => input[26] == 'i' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-aqi' */ 3 : -1,
+                                                                                                                    'y' => input[26] == 'q' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-ayq' */ 4 : -1,
+                                                                                                                    _ => -1,
+                                                                                                                },
+                                                                                                                'i' => input[25] switch
+                                                                                                                {
+                                                                                                                    'A' => input[26] == 'y' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-iAy' */ 5 : -1,
+                                                                                                                    'a' => input[26] == 'A' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-iaA' */ 6 : -1,
+                                                                                                                    'i' => input[26] == 'a' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-iia' */ 7 : -1,
+                                                                                                                    'q' => input[26] == 'i' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-iqi' */ 8 : -1,
+                                                                                                                    'y' => input[26] == 'q' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-iyq' */ 9 : -1,
+                                                                                                                    _ => -1,
+                                                                                                                },
+                                                                                                                'q' => input[25] switch
+                                                                                                                {
+                                                                                                                    'A' => input[26] == 'y' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-qAy' */ 10 : -1,
+                                                                                                                    'a' => input[26] == 'A' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-qaA' */ 11 : -1,
+                                                                                                                    'i' => input[26] == 'a' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-qia' */ 12 : -1,
+                                                                                                                    'q' => input[26] == 'i' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-qqi' */ 13 : -1,
+                                                                                                                    'y' => input[26] == 'q' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-qyq' */ 14 : -1,
+                                                                                                                    _ => -1,
+                                                                                                                },
+                                                                                                                'y' => input[25] switch
+                                                                                                                {
+                                                                                                                    'A' => input[26] == 'y' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-yAy' */ 15 : -1,
+                                                                                                                    'a' => input[26] == 'A' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-yaA' */ 16 : -1,
+                                                                                                                    'i' => input[26] == 'a' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-yia' */ 17 : -1,
+                                                                                                                    'q' => input[26] == 'i' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-yqi' */ 18 : -1,
+                                                                                                                    'y' => input[26] == 'q' ? /* match 'xxxxx-xxxxx-xxxxx-xxxxx-yyq' */ 19 : -1,
+                                                                                                                    _ => -1,
+                                                                                                                },
+                                                                                                                _ => -1,
+                                                                                                            },
+                                                                                                            _ => -1,
+                                                                                                        },
+                                                                                                        _ => -1,
+                                                                                                    },
+                                                                                                    _ => -1,
+                                                                                                },
+                                                                                                _ => -1,
+                                                                                            },
+                                                                                            _ => -1,
+                                                                                        },
+                                                                                        _ => -1,
+                                                                                    },
+                                                                                    _ => -1,
+                                                                                },
+                                                                                _ => -1,
+                                                                            },
+                                                                            _ => -1,
+                                                                        },
+                                                                        _ => -1,
+                                                                    },
+                                                                    _ => -1,
+                                                                },
+                                                                _ => -1,
+                                                            },
+                                                            _ => -1,
+                                                        },
+                                                        _ => -1,
+                                                    },
+                                                    _ => -1,
+                                                },
+                                                _ => -1,
+                                            },
+                                            _ => -1,
+                                        },
+                                        _ => -1,
+                                    },
+                                    _ => -1,
+                                },
+                                _ => -1,
+                            },
+                            _ => -1,
+                        },
+                        _ => -1,
+                    },
+                    _ => -1,
+                },
+                _ => -1,
+            },
+            _ => -1,
+        };
+    }
 
     private static int SparseWithSixCandidatesPerBucket(string s)
     {
@@ -7587,22 +7680,6 @@ public class TestScenariosCore
             _ => 0,
         };
     }
-
-
-    public static int SparseWithSevenCandidatesPerBucket_Case1() => SparseWithSevenCandidatesPerBucket("aaQ");
-    public static int SparseWithSevenCandidatesPerBucket_Case2() => SparseWithSevenCandidatesPerBucket("aia");
-    public static int SparseWithSevenCandidatesPerBucket_Case3() => SparseWithSevenCandidatesPerBucket("aqi");
-    public static int SparseWithSevenCandidatesPerBucket_Case4() => SparseWithSevenCandidatesPerBucket("ayq");
-    public static int SparseWithSevenCandidatesPerBucket_Case5() => SparseWithSevenCandidatesPerBucket("aAy");
-    public static int SparseWithSevenCandidatesPerBucket_Case6() => SparseWithSevenCandidatesPerBucket("aIA");
-    public static int SparseWithSevenCandidatesPerBucket_Case7() => SparseWithSevenCandidatesPerBucket("aQI");
-    public static int SparseWithSevenCandidatesPerBucket_Case8() => SparseWithSevenCandidatesPerBucket("iaQ");
-    public static int SparseWithSevenCandidatesPerBucket_Case9() => SparseWithSevenCandidatesPerBucket("iia");
-    public static int SparseWithSevenCandidatesPerBucket_Case10() => SparseWithSevenCandidatesPerBucket("iqi");
-    public static int SparseWithSevenCandidatesPerBucket_Case11() => SparseWithSevenCandidatesPerBucket("iyq");
-    public static int SparseWithSevenCandidatesPerBucket_Case12() => SparseWithSevenCandidatesPerBucket("iAy");
-    public static int SparseWithSevenCandidatesPerBucket_Case13() => SparseWithSevenCandidatesPerBucket("iIA");
-    public static int SparseWithSevenCandidatesPerBucket_Case14() => SparseWithSevenCandidatesPerBucket("iQI");
 
     private static int SparseWithSevenCandidatesPerBucket(string s)
     {
