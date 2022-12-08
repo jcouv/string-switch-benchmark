@@ -3,19 +3,20 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
-_ = BenchmarkRunner.Run<LengthVsHashCode>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_Switch1>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_NotALengthMatch>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_ShortSwitch>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithTwoCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithThreeCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithThreeCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithThreeCandidatesPerBucket_Mix>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithFourCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithFourCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithFiveCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSixCandidatesPerBucket>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSevenCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_Switch1>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_NotALengthMatch>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_CyrusSwitch>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_ShortSwitch>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithTwoCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithThreeCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithThreeCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithThreeCandidatesPerBucket_Mix>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithFourCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_SparseLongWithFourCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithFiveCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSixCandidatesPerBucket>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSevenCandidatesPerBucket>();
 
 public partial class LengthVsHashCode_Switch1
 {
@@ -80,13 +81,29 @@ public partial class LengthVsHashCode
     public int ContentTypeOld() => OldRoslyn.ContentType();
     [Benchmark]
     public int ContentTypeAsListPattern() => OldRoslyn.ContentTypeAsListPattern();
-
+}
+public class LengthVsHashCode_CyrusSwitch
+{
+    /*
+    |  CyrusSwitchNew | hello | 12.659 ns | 0.2749 ns | 0.3055 ns |
+    | CyrusSwitchTrie | hello |  8.551 ns | 0.1915 ns | 0.1967 ns |
+    |  CyrusSwitchOld | hello |  5.319 ns | 0.0298 ns | 0.0265 ns |
+    |  CyrusSwitchNew | world |  8.472 ns | 0.0456 ns | 0.0404 ns |
+    | CyrusSwitchTrie | world | 11.098 ns | 0.0813 ns | 0.0720 ns |
+    |  CyrusSwitchOld | world |  5.841 ns | 0.0169 ns | 0.0150 ns |
+    */
+    [Params("hello", "world")]
+    public string Value { get; set; }
     [Benchmark]
-    public int CyrusSwitch() => OldRoslyn.CyrusSwitch();
+    public int CyrusSwitchNew() => NewRoslyn.CyrusSwitch(Value);
     [Benchmark]
-    public int CyrusTrie() => OldRoslyn.CyrusTrie();
+    public int CyrusSwitchTrie() => TrieRoslyn.CyrusSwitch(Value);
     [Benchmark]
-    public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
+    public int CyrusSwitchOld() => OldRoslyn.CyrusSwitch(Value);
+    //[Benchmark]
+    //public int CyrusTrie() => OldRoslyn.CyrusTrie();
+    //[Benchmark]
+    //public int CyrusTrieWithoutOptimizations() => OldRoslyn.CyrusTrieWithoutOptimizations();
 }
 public class LengthVsHashCode_ShortSwitch
 {
