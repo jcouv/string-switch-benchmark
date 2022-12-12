@@ -6,7 +6,7 @@ using BenchmarkDotNet.Running;
 //_ = BenchmarkRunner.Run<LengthVsHashCode>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_Switch1>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_NotALengthMatch>();
-_ = BenchmarkRunner.Run<LengthVsHashCode_CyrusSwitch>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_CyrusSwitch>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_ShortSwitch>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithTwoCandidatesPerBucket>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_DenseWithThreeCandidatesPerBucket>();
@@ -17,6 +17,12 @@ _ = BenchmarkRunner.Run<LengthVsHashCode_CyrusSwitch>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithFiveCandidatesPerBucket>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSixCandidatesPerBucket>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_SparseWithSevenCandidatesPerBucket>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_GetContents>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_GetContents_Mix>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_TryParseStatusFile>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_TryParseStatusFile_Mix>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_GetHashForChannelBinding>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_GetHashForChannelBinding_Mix>();
 
 public partial class LengthVsHashCode_Switch1
 {
@@ -420,3 +426,76 @@ public partial class LengthVsHashCode
         return last;
     }
 }
+public partial class LengthVsHashCode_GetContents
+{
+    [Params("1.2.840.10040.4.1", "1.2.840.10040.4.3", "1.2.840.10045.2.1", "1.2.840.10045.1.1", "1.2.840.10045.1.2", "1.2.840.10045.3.1.7",
+        "1.2.840.10045.4.1", "1.2.840.10045.4.3.2", "1.2.840.10045.4.3.3", "1.2.840.10045.4.3.4", "1.2.840.113549.1.1.1", "1.2.840.113549.1.1.5",
+        "1.2.840.113549.1.1.7", "1.2.840.113549.1.1.8", "1.2.840.113549.1.1.9", "1.2.840.113549.1.1.10", "1.2.840.113549.1.1.11", "1.2.840.113549.1.1.12",
+        "1.2.840.113549.1.1.13", "1.2.840.113549.1.5.3", "1.2.840.113549.1.5.10", "1.2.840.113549.1.5.11", "1.2.840.113549.1.5.12", "1.2.840.113549.1.5.13",
+        "1.2.840.113549.1.7.1", "1.2.840.113549.1.7.2", "1.2.840.113549.1.7.3", "1.2.840.113549.1.7.6", "1.2.840.113549.1.9.1", "1.2.840.113549.1.9.3",
+        "1.2.840.113549.1.9.4", "1.2.840.113549.1.9.5", "1.2.840.113549.1.9.6", "1.2.840.113549.1.9.7", "1.2.840.113549.1.9.14", "1.2.840.113549.1.9.15",
+        "1.2.840.113549.1.9.16.1.4", "1.2.840.113549.1.9.16.2.12", "1.2.840.113549.1.9.16.2.14", "1.2.840.113549.1.9.16.2.47", "1.2.840.113549.1.9.20",
+        "1.2.840.113549.1.9.21", "1.2.840.113549.1.9.22.1", "1.2.840.113549.1.12.1.3", "1.2.840.113549.1.12.1.5", "1.2.840.113549.1.12.1.6", "1.2.840.113549.1.12.10.1.1",
+        "1.2.840.113549.1.12.10.1.2", "1.2.840.113549.1.12.10.1.3", "1.2.840.113549.1.12.10.1.5", "1.2.840.113549.1.12.10.1.6", "1.2.840.113549.2.5", "1.2.840.113549.2.7",
+        "1.2.840.113549.2.9", "1.2.840.113549.2.10", "1.2.840.113549.2.11", "1.2.840.113549.3.2", "1.2.840.113549.3.7", "1.3.6.1.4.1.311.17.1",
+        "1.3.6.1.4.1.311.17.3.20", "1.3.6.1.4.1.311.20.2.3", "1.3.6.1.4.1.311.88.2.1", "1.3.6.1.4.1.311.88.2.2", "1.3.6.1.5.5.7.3.1", "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.3", "1.3.6.1.5.5.7.3.4", "1.3.6.1.5.5.7.3.8", "1.3.6.1.5.5.7.3.9", "1.3.6.1.5.5.7.6.2", "1.3.6.1.5.5.7.48.1", "1.3.6.1.5.5.7.48.1.2",
+        "1.3.6.1.5.5.7.48.2", "1.3.14.3.2.26", "1.3.14.3.2.7", "1.3.132.0.34", "1.3.132.0.35", "2.5.4.3", "2.5.4.5", "2.5.4.6", "2.5.4.7", "2.5.4.8", "2.5.4.10",
+        "2.5.4.11", "2.5.4.97", "2.5.29.14", "2.5.29.15", "2.5.29.17", "2.5.29.19", "2.5.29.20", "2.5.29.35", "2.16.840.1.101.3.4.1.2", "2.16.840.1.101.3.4.1.22",
+        "2.16.840.1.101.3.4.1.42", "2.16.840.1.101.3.4.2.1", "2.16.840.1.101.3.4.2.2", "2.16.840.1.101.3.4.2.3", "2.23.140.1.2.1", "2.23.140.1.2.2")]
+    public string Value { get; set; }
+
+    [Benchmark]
+    public string GetContents_New() => NewRoslyn.GetContents(Value);
+    [Benchmark]
+    public string GetContents_Old() => OldRoslyn.GetContents(Value);
+}
+
+public partial class LengthVsHashCode_GetContents_Mix
+{
+    [Benchmark]
+    public string GetDriveType_Mix_New() => NewRoslyn.GetContents_Mix();
+    [Benchmark]
+    public string GetDriveType_Mix_Old() => OldRoslyn.GetContents_Mix();
+}
+
+public partial class LengthVsHashCode_TryParseStatusFile
+{
+    [Params("Pid", "VmHWM", "VmRSS", "VmData", "VmSwap", "VmSize", "VmPeak", "VmStk")]
+    public string Value { get; set; }
+
+    [Benchmark]
+    public string TryParseStatusFile_New() => NewRoslyn.TryParseStatusFile(Value);
+    [Benchmark]
+    public string TryParseStatusFile_Old() => OldRoslyn.TryParseStatusFile(Value);
+}
+
+public partial class LengthVsHashCode_TryParseStatusFile_Mix
+{
+    [Benchmark]
+    public string TryParseStatusFile_New_Mix() => NewRoslyn.TryParseStatusFile_Mix();
+    [Benchmark]
+    public string TryParseStatusFile_Old_Mix() => OldRoslyn.TryParseStatusFile_Mix();
+}
+
+public partial class LengthVsHashCode_GetHashForChannelBinding
+{
+    [Params("1.2.840.113549.2.5", "1.2.840.113549.1.1.4", "1.3.14.3.2.26", "1.2.840.10040.4.3", "1.2.840.10045.4.1", "1.2.840.113549.1.1.5",
+        "2.16.840.1.101.3.4.2.1", "1.2.840.10045.4.3.2", "1.2.840.113549.1.1.11", "2.16.840.1.101.3.4.2.2", "1.2.840.10045.4.3.3",
+        "1.2.840.113549.1.1.12", "2.16.840.1.101.3.4.2.3", "1.2.840.10045.4.3.4", "1.2.840.113549.1.1.13")]
+    public string Value { get; set; }
+
+    [Benchmark]
+    public string GetHashForChannelBinding_New() => NewRoslyn.GetHashForChannelBinding(Value);
+    [Benchmark]
+    public string GetHashForChannelBinding_Old() => OldRoslyn.GetHashForChannelBinding(Value);
+}
+
+public partial class LengthVsHashCode_GetHashForChannelBinding_Mix
+{
+    [Benchmark]
+    public string GetHashForChannelBinding_New_Mix() => NewRoslyn.GetHashForChannelBinding_Mix();
+    [Benchmark]
+    public string GetHashForChannelBinding_Old_Mix() => OldRoslyn.GetHashForChannelBinding_Mix();
+}
+
