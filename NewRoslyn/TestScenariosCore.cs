@@ -7893,4 +7893,440 @@ public class TestScenariosCore
 
         return last;
     }
+
+
+    public static string WriteEntityRef(string s)
+    {
+        return s switch
+        {
+            "amp" => "amp",
+            "apos" => "apos",
+            "gt" => "gt",
+            "lt" => "lt",
+            "quot" => "quot",
+            _ => "default"
+        };
+    }
+
+    public static string WriteEntityRef_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "amp", "apos", "gt", "lt", "quot"
+            })
+        {
+            last = WriteEntityRef(s);
+        }
+
+        return last;
+    }
+
+    public static string FunctionAvailable(string s)
+    {
+        switch (s)
+        {
+            case "last":
+            case "position":
+            case "name":
+            case "namespace-uri":
+            case "local-name":
+            case "count":
+            case "id":
+            case "string":
+            case "concat":
+            case "starts-with":
+            case "contains":
+            case "substring-before":
+            case "substring-after":
+            case "substring":
+            case "string-length":
+            case "normalize-space":
+            case "translate":
+            case "boolean":
+            case "not":
+            case "true":
+            case "false":
+            case "lang":
+            case "number":
+            case "sum":
+            case "floor":
+            case "ceiling":
+            case "round":
+                return "first";
+
+            default:
+                return "default";
+        }
+    }
+
+    public static string FunctionAvailable_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "last", "position", "name", "namespace-uri", "local-name", "count", "id",
+            "string", "concat", "starts-with", "contains", "substring-before", "substring-after",
+            "substring", "string-length", "normalize-space", "translate", "boolean", "not", "true",
+            "false", "lang", "number", "sum", "floor", "ceiling", "round"
+            })
+        {
+            last = FunctionAvailable(s);
+        }
+
+        return last;
+    }
+
+    public static string NormalizeTimeZone(string s)
+    {
+        switch (s)
+        {
+            case "UT":
+            case "Z":
+                return "-00:00";
+            case "GMT":
+                return "-00:00";
+            case "A":
+                return "-01:00";
+            case "B":
+                return "-02:00";
+            case "C":
+                return "-03:00";
+            case "D":
+            case "EDT":
+                return "-04:00";
+            case "E":
+            case "EST":
+            case "CDT":
+                return "-05:00";
+            case "F":
+            case "CST":
+            case "MDT":
+                return "-06:00";
+            case "G":
+            case "MST":
+            case "PDT":
+                return "-07:00";
+            case "H":
+            case "PST":
+                return "-08:00";
+            case "I":
+                return "-09:00";
+            case "K":
+                return "-10:00";
+            case "L":
+                return "-11:00";
+            case "M":
+                return "-12:00";
+            case "N":
+                return "+01:00";
+            case "O":
+                return "+02:00";
+            case "P":
+                return "+03:00";
+            case "Q":
+                return "+04:00";
+            case "R":
+                return "+05:00";
+            case "S":
+                return "+06:00";
+            case "T":
+                return "+07:00";
+            case "U":
+                return "+08:00";
+            case "V":
+                return "+09:00";
+            case "W":
+                return "+10:00";
+            case "X":
+                return "+11:00";
+            case "Y":
+                return "+12:00";
+            default:
+                return "default";
+        }
+    }
+
+    public static string NormalizeTimeZone_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "UT", "Z", "GMT", "A", "B", "C", "D", "EDT", "E", "EST", "CDT", "F", "CST", "MDT",
+            "G", "MST", "PDT", "H", "PST", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+            "U", "V", "W", "X", "Y"
+            })
+        {
+            last = NormalizeTimeZone(s);
+        }
+
+        return last;
+    }
+
+    public static string AcceptCommand(string s)
+    {
+        switch (s)
+        {
+            case "Target.attachToTarget":
+                return "1";
+
+            case "Debugger.enable":
+                return "2";
+
+            case "Debugger.getScriptSource":
+                return "3";
+
+            case "Runtime.compileScript":
+                return "4";
+
+            case "Debugger.getPossibleBreakpoints":
+                return "5";
+
+            case "Debugger.setBreakpoint":
+                return "6";
+
+            case "Debugger.setBreakpointByUrl":
+                return "7";
+
+            case "Debugger.removeBreakpoint":
+                return "8";
+
+            case "Debugger.resume":
+                return "9";
+
+            case "Debugger.stepInto":
+                return "10";
+
+            case "Debugger.setVariableValue":
+                return "11";
+
+            case "Debugger.stepOut":
+                return "12";
+
+            case "Debugger.stepOver":
+                return "13";
+
+            case "Runtime.evaluate":
+                return "14";
+
+            case "Debugger.evaluateOnCallFrame":
+                return "15";
+
+            case "Runtime.getProperties":
+                return "16";
+
+            case "Runtime.releaseObject":
+                return "17";
+
+            case "Debugger.setPauseOnExceptions":
+                return "18";
+
+            case "DotnetDebugger.setDebuggerProperty":
+                return "19";
+
+            case "DotnetDebugger.setNextIP":
+                return "20";
+
+            case "DotnetDebugger.applyUpdates":
+                return "21";
+
+            case "DotnetDebugger.addSymbolServerUrl":
+                return "22";
+
+            case "DotnetDebugger.getMethodLocation":
+                return "23";
+
+            case "Runtime.callFunctionOn":
+                return "24";
+
+            default:
+                return "default";
+        }
+    }
+
+    public static string AcceptCommand_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "Target.attachToTarget", "Debugger.enable", "Debugger.getScriptSource", "Runtime.compileScript", "Debugger.getPossibleBreakpoints",
+            "Debugger.setBreakpoint", "Debugger.setBreakpointByUrl", "Debugger.removeBreakpoint", "Debugger.resume", "Debugger.stepInto",
+            "Debugger.setVariableValue", "Debugger.stepOut", "Debugger.stepOver", "Runtime.evaluate", "Debugger.evaluateOnCallFrame",
+            "Runtime.getProperties", "Runtime.releaseObject", "Debugger.setPauseOnExceptions", "DotnetDebugger.setDebuggerProperty",
+            "DotnetDebugger.setNextIP", "DotnetDebugger.applyUpdates", "DotnetDebugger.addSymbolServerUrl", "DotnetDebugger.getMethodLocation",
+            "Runtime.callFunctionOn"
+            })
+        {
+            last = AcceptCommand(s);
+        }
+
+        return last;
+    }
+
+
+    public static string EmitIL(string s)
+    {
+        switch (s)
+        {
+            case "AsPointer":
+                return "1";
+            case "As":
+            case "AsRef":
+                return "2";
+            case "Add":
+                return "3";
+            case "AddByteOffset":
+                return "4";
+            case "Copy":
+                return "5";
+            case "CopyBlock":
+                return "6";
+            case "CopyBlockUnaligned":
+                return "7";
+            case "InitBlock":
+                return "8";
+            case "InitBlockUnaligned":
+                return "9";
+            case "Read":
+                return "10";
+            case "Write":
+                return "11";
+            case "ReadUnaligned":
+                return "12";
+            case "WriteUnaligned":
+                return "13";
+            case "AreSame":
+                return "14";
+            case "ByteOffset":
+                return "14";
+            case "NullRef":
+                return "15";
+            case "IsNullRef":
+                return "16";
+            case "SkipInit":
+                return "17";
+            case "Subtract":
+                return "18";
+            case "SubtractByteOffset":
+                return "19";
+            case "Unbox":
+                return "20";
+            default:
+                return "default";
+        }
+    }
+
+    public static string EmitIL_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "AsPointer", "As", "AsRef", "Add", "AddByteOffset", "Copy", "CopyBlock", "CopyBlockUnaligned",
+            "InitBlock", "InitBlockUnaligned", "Read", "Write", "ReadUnaligned", "WriteUnaligned", "AreSame",
+            "ByteOffset", "NullRef", "IsNullRef", "SkipInit", "Subtract", "SubtractByteOffset", "Unbox"
+            })
+        {
+            last = EmitIL(s);
+        }
+
+        return last;
+    }
+
+    public static string GetWellKnownType(string s)
+    {
+        return s switch
+        {
+            "String" => "String",
+            "Nullable`1" => "Nullable`1",
+            "Type" => "Type",
+            "Array" => "Array",
+            "Attribute" => "Attribute",
+            "Object" => "Object",
+            "NotSupportedException" => "NotSupportedException",
+            "Void" => "Void",
+            _ => "default"
+        };
+    }
+
+    public static string GetWellKnownType_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "String", "Nullable`1", "Type", "Array", "Attribute", "Object", "NotSupportedException", "Void"
+            })
+        {
+            last = GetWellKnownType(s);
+        }
+
+        return last;
+    }
+
+    public static string GetLocalizedString(string s)
+    {
+        return s switch
+        {
+            "Action" => "Action",
+            "Appearance" => "Appearance",
+            "Asynchronous" => "Asynchronous",
+            "Behavior" => "Behavior",
+            "Config" => "Config",
+            "Data" => "Data",
+            "DDE" => "DDE",
+            "Default" => "Default",
+            "Design" => "Design",
+            "DragDrop" => "DragDrop",
+            "Focus" => "Focus",
+            "Font" => "Font",
+            "Format" => "Format",
+            "Key" => "Key",
+            "Layout" => "Layout",
+            "List" => "List",
+            "Mouse" => "Mouse",
+            "Position" => "Position",
+            "Scale" => "Scale",
+            "Text" => "Text",
+            "WindowStyle" => "WindowStyle",
+            _ => "default"
+        };
+    }
+
+    public static string GetLocalizedString_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "Action", "Appearance", "Asynchronous", "Behavior", "Config", "Data", "DDE", "Default",
+            "Design", "DragDrop", "Focus", "Font", "Format", "Key", "Layout", "List", "Mouse",
+            "Position", "Scale", "Text", "WindowStyle"
+            })
+        {
+            last = GetLocalizedString(s);
+        }
+
+        return last;
+    }
+
+
+    public static string ParseGraphicsUnits(string s)
+    {
+        return s switch
+        {
+            "display" => "display",
+            "doc" => "doc",
+            "pt" => "pt",
+            "in" => "in",
+            "mm" => "mm",
+            "px" => "px",
+            "world" => "world",
+            _ => "default"
+        };
+    }
+
+    public static string ParseGraphicsUnits_Mix()
+    {
+        string last = null;
+        foreach (var s in new[] {
+            "display", "doc", "pt", "in", "mm", "px", "world"
+            })
+        {
+            last = ParseGraphicsUnits(s);
+        }
+
+        return last;
+    }
+
 }
