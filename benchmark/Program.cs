@@ -30,15 +30,15 @@ using BenchmarkDotNet.Running;
 //_ = BenchmarkRunner.Run<LengthVsHashCode_NormalizeTimeZone>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_NormalizeTimeZone_Mix>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_AcceptCommand>();
-//_ = BenchmarkRunner.Run<LengthVsHashCode_AcceptCommand_Mix>(); // TODO2
-_ = BenchmarkRunner.Run<LengthVsHashCode_EmitIL>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_AcceptCommand_Mix>();
+//_ = BenchmarkRunner.Run<LengthVsHashCode_EmitIL>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_EmitIL_Mix>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_GetWellKnownType>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_GetWellKnownType_Mix>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_GetLocalizedString>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_GetLocalizedString_Mix>();
 //_ = BenchmarkRunner.Run<LengthVsHashCode_ParseGraphicsUnits>();
-//_ = BenchmarkRunner.Run<LengthVsHashCode_ParseGraphicsUnits_Mix>();
+_ = BenchmarkRunner.Run<LengthVsHashCode_ParseGraphicsUnits_Mix>();
 
 public partial class LengthVsHashCode_Switch1
 {
@@ -1085,6 +1085,12 @@ public partial class LengthVsHashCode_AcceptCommand
 
 public partial class LengthVsHashCode_AcceptCommand_Mix
 {
+    /*
+    |                Method |     Mean |   Error |  StdDev |
+    |---------------------- |---------:|--------:|--------:|
+    | AcceptCommand_New_Mix | 104.4 ns | 0.66 ns | 0.59 ns |
+    | AcceptCommand_Old_Mix | 349.0 ns | 0.99 ns | 0.92 ns |
+    */
     [Benchmark]
     public string AcceptCommand_New_Mix() => NewRoslyn.AcceptCommand_Mix();
     [Benchmark]
@@ -1155,6 +1161,12 @@ public partial class LengthVsHashCode_EmitIL
 
 public partial class LengthVsHashCode_EmitIL_Mix
 {
+    /*
+    |          Method |      Mean |    Error |   StdDev |
+    |---------------- |----------:|---------:|---------:|
+    | EmiltIL_New_Mix |  92.81 ns | 0.451 ns | 0.400 ns |
+    | EmiltIL_Old_Mix | 158.47 ns | 1.056 ns | 0.936 ns |
+    */
     [Benchmark]
     public string EmiltIL_New_Mix() => NewRoslyn.EmitIL_Mix();
     [Benchmark]
@@ -1164,6 +1176,26 @@ public partial class LengthVsHashCode_EmitIL_Mix
 
 public partial class LengthVsHashCode_GetWellKnownType
 {
+    /*
+    |               Method |                Value |      Mean |     Error |    StdDev |    Median |
+    |--------------------- |--------------------- |----------:|----------:|----------:|----------:|
+    | GetWellKnownType_New |                Array |  1.717 ns | 0.0117 ns | 0.0103 ns |  1.720 ns |
+    | GetWellKnownType_Old |                Array |  3.499 ns | 0.0257 ns | 0.0228 ns |  3.494 ns |
+    | GetWellKnownType_New |            Attribute |  1.726 ns | 0.0113 ns | 0.0100 ns |  1.724 ns |
+    | GetWellKnownType_Old |            Attribute |  4.550 ns | 0.1286 ns | 0.2769 ns |  4.428 ns |
+    | GetWellKnownType_New | NotSu(...)ption [21] |  1.571 ns | 0.0104 ns | 0.0097 ns |  1.568 ns |
+    | GetWellKnownType_Old | NotSu(...)ption [21] | 10.437 ns | 0.0322 ns | 0.0301 ns | 10.432 ns |
+    | GetWellKnownType_New |           Nullable`1 |  1.941 ns | 0.0296 ns | 0.0277 ns |  1.936 ns |
+    | GetWellKnownType_Old |           Nullable`1 |  4.738 ns | 0.0224 ns | 0.0198 ns |  4.732 ns |
+    | GetWellKnownType_New |               Object |  2.156 ns | 0.0147 ns | 0.0131 ns |  2.157 ns |
+    | GetWellKnownType_Old |               Object |  3.940 ns | 0.0589 ns | 0.0522 ns |  3.915 ns |
+    | GetWellKnownType_New |               String |  1.913 ns | 0.0040 ns | 0.0035 ns |  1.912 ns |
+    | GetWellKnownType_Old |               String |  4.124 ns | 0.0277 ns | 0.0246 ns |  4.119 ns |
+    | GetWellKnownType_New |                 Type |  1.705 ns | 0.0061 ns | 0.0051 ns |  1.706 ns |
+    | GetWellKnownType_Old |                 Type |  3.691 ns | 0.0206 ns | 0.0193 ns |  3.687 ns |
+    | GetWellKnownType_New |                 Void |  1.708 ns | 0.0103 ns | 0.0096 ns |  1.709 ns |
+    | GetWellKnownType_Old |                 Void |  3.478 ns | 0.0123 ns | 0.0109 ns |  3.477 ns |
+    */
     [Params("String", "Nullable`1", "Type", "Array", "Attribute", "Object", "NotSupportedException", "Void")]
     public string Value { get; set; }
 
@@ -1175,6 +1207,12 @@ public partial class LengthVsHashCode_GetWellKnownType
 
 public partial class LengthVsHashCode_GetWellKnownType_Mix
 {
+    /*
+    |                   Method |     Mean |    Error |   StdDev |
+    |------------------------- |---------:|---------:|---------:|
+    | GetWellKnownType_New_Mix | 34.31 ns | 0.343 ns | 0.286 ns |
+    | GetWellKnownType_Old_Mix | 53.41 ns | 0.420 ns | 0.393 ns |
+     */
     [Benchmark]
     public string GetWellKnownType_New_Mix() => NewRoslyn.GetWellKnownType_Mix();
     [Benchmark]
@@ -1184,6 +1222,52 @@ public partial class LengthVsHashCode_GetWellKnownType_Mix
 
 public partial class LengthVsHashCode_GetLocalizedString
 {
+    /*
+    |                 Method |        Value |     Mean |     Error |    StdDev |
+    |----------------------- |------------- |---------:|----------:|----------:|
+    | GetLocalizedString_New |       Action | 2.020 ns | 0.0233 ns | 0.0207 ns |
+    | GetLocalizedString_Old |       Action | 3.910 ns | 0.0411 ns | 0.0364 ns |
+    | GetLocalizedString_New |   Appearance | 1.708 ns | 0.0100 ns | 0.0094 ns |
+    | GetLocalizedString_Old |   Appearance | 4.777 ns | 0.0150 ns | 0.0140 ns |
+    | GetLocalizedString_New | Asynchronous | 1.514 ns | 0.0225 ns | 0.0199 ns |
+    | GetLocalizedString_Old | Asynchronous | 5.769 ns | 0.0324 ns | 0.0287 ns |
+    | GetLocalizedString_New |     Behavior | 1.920 ns | 0.0150 ns | 0.0133 ns |
+    | GetLocalizedString_Old |     Behavior | 4.566 ns | 0.0332 ns | 0.0311 ns |
+    | GetLocalizedString_New |       Config | 2.007 ns | 0.0194 ns | 0.0172 ns |
+    | GetLocalizedString_Old |       Config | 3.694 ns | 0.0238 ns | 0.0199 ns |
+    | GetLocalizedString_New |          DDE | 1.713 ns | 0.0110 ns | 0.0092 ns |
+    | GetLocalizedString_Old |          DDE | 3.266 ns | 0.0094 ns | 0.0074 ns |
+    | GetLocalizedString_New |         Data | 1.502 ns | 0.0101 ns | 0.0094 ns |
+    | GetLocalizedString_Old |         Data | 3.696 ns | 0.0289 ns | 0.0270 ns |
+    | GetLocalizedString_New |      Default | 1.501 ns | 0.0139 ns | 0.0130 ns |
+    | GetLocalizedString_Old |      Default | 3.955 ns | 0.0543 ns | 0.0508 ns |
+    | GetLocalizedString_New |       Design | 2.007 ns | 0.0237 ns | 0.0222 ns |
+    | GetLocalizedString_Old |       Design | 4.343 ns | 0.0348 ns | 0.0309 ns |
+    | GetLocalizedString_New |     DragDrop | 1.941 ns | 0.0335 ns | 0.0314 ns |
+    | GetLocalizedString_Old |     DragDrop | 4.559 ns | 0.0249 ns | 0.0221 ns |
+    | GetLocalizedString_New |        Focus | 1.915 ns | 0.0069 ns | 0.0057 ns |
+    | GetLocalizedString_Old |        Focus | 4.123 ns | 0.0172 ns | 0.0161 ns |
+    | GetLocalizedString_New |         Font | 1.510 ns | 0.0206 ns | 0.0193 ns |
+    | GetLocalizedString_Old |         Font | 3.479 ns | 0.0320 ns | 0.0283 ns |
+    | GetLocalizedString_New |       Format | 2.024 ns | 0.0233 ns | 0.0218 ns |
+    | GetLocalizedString_Old |       Format | 4.323 ns | 0.0189 ns | 0.0168 ns |
+    | GetLocalizedString_New |          Key | 1.502 ns | 0.0103 ns | 0.0086 ns |
+    | GetLocalizedString_Old |          Key | 3.469 ns | 0.0113 ns | 0.0105 ns |
+    | GetLocalizedString_New |       Layout | 2.005 ns | 0.0200 ns | 0.0178 ns |
+    | GetLocalizedString_Old |       Layout | 4.323 ns | 0.0190 ns | 0.0178 ns |
+    | GetLocalizedString_New |         List | 2.122 ns | 0.0110 ns | 0.0098 ns |
+    | GetLocalizedString_Old |         List | 3.691 ns | 0.0204 ns | 0.0171 ns |
+    | GetLocalizedString_New |        Mouse | 1.714 ns | 0.0127 ns | 0.0113 ns |
+    | GetLocalizedString_Old |        Mouse | 3.695 ns | 0.0105 ns | 0.0088 ns |
+    | GetLocalizedString_New |     Position | 1.709 ns | 0.0095 ns | 0.0079 ns |
+    | GetLocalizedString_Old |     Position | 4.547 ns | 0.0217 ns | 0.0181 ns |
+    | GetLocalizedString_New |        Scale | 1.717 ns | 0.0131 ns | 0.0116 ns |
+    | GetLocalizedString_Old |        Scale | 3.907 ns | 0.0141 ns | 0.0118 ns |
+    | GetLocalizedString_New |         Text | 1.912 ns | 0.0149 ns | 0.0140 ns |
+    | GetLocalizedString_Old |         Text | 3.680 ns | 0.0134 ns | 0.0112 ns |
+    | GetLocalizedString_New |  WindowStyle | 1.495 ns | 0.0098 ns | 0.0082 ns |
+    | GetLocalizedString_Old |  WindowStyle | 5.496 ns | 0.0189 ns | 0.0158 ns |
+    */
     [Params("Action", "Appearance", "Asynchronous", "Behavior", "Config", "Data", "DDE", "Default",
         "Design", "DragDrop", "Focus", "Font", "Format", "Key", "Layout", "List", "Mouse",
         "Position", "Scale", "Text", "WindowStyle")]
@@ -1197,6 +1281,12 @@ public partial class LengthVsHashCode_GetLocalizedString
 
 public partial class LengthVsHashCode_GetLocalizedString_Mix
 {
+    /*
+    |                     Method |      Mean |    Error |   StdDev |
+    |--------------------------- |----------:|---------:|---------:|
+    | GetLocalizedString_New_Mix |  94.59 ns | 1.132 ns | 1.004 ns |
+    | GetLocalizedString_Old_Mix | 126.86 ns | 1.304 ns | 1.219 ns |
+    */
     [Benchmark]
     public string GetLocalizedString_New_Mix() => NewRoslyn.GetLocalizedString_Mix();
     [Benchmark]
@@ -1206,6 +1296,24 @@ public partial class LengthVsHashCode_GetLocalizedString_Mix
 
 public partial class LengthVsHashCode_ParseGraphicsUnits
 {
+    /*
+    |                 Method |   Value |     Mean |     Error |    StdDev |
+    |----------------------- |-------- |---------:|----------:|----------:|
+    | ParseGraphicsUnits_New | display | 1.717 ns | 0.0198 ns | 0.0176 ns |
+    | ParseGraphicsUnits_Old | display | 3.917 ns | 0.0222 ns | 0.0197 ns |
+    | ParseGraphicsUnits_New |     doc | 1.712 ns | 0.0170 ns | 0.0159 ns |
+    | ParseGraphicsUnits_Old |     doc | 3.519 ns | 0.0644 ns | 0.0571 ns |
+    | ParseGraphicsUnits_New |      in | 1.825 ns | 0.0254 ns | 0.0212 ns |
+    | ParseGraphicsUnits_Old |      in | 2.784 ns | 0.0145 ns | 0.0136 ns |
+    | ParseGraphicsUnits_New |      mm | 1.911 ns | 0.0052 ns | 0.0046 ns |
+    | ParseGraphicsUnits_Old |      mm | 3.008 ns | 0.0109 ns | 0.0091 ns |
+    | ParseGraphicsUnits_New |      pt | 2.309 ns | 0.0192 ns | 0.0179 ns |
+    | ParseGraphicsUnits_Old |      pt | 2.811 ns | 0.0178 ns | 0.0157 ns |
+    | ParseGraphicsUnits_New |      px | 1.927 ns | 0.0133 ns | 0.0111 ns |
+    | ParseGraphicsUnits_Old |      px | 3.004 ns | 0.0134 ns | 0.0119 ns |
+    | ParseGraphicsUnits_New |   world | 1.705 ns | 0.0092 ns | 0.0081 ns |
+    | ParseGraphicsUnits_Old |   world | 3.501 ns | 0.0206 ns | 0.0183 ns |
+     */
     [Params("display", "doc", "pt", "in", "mm", "px", "world")]
     public string Value { get; set; }
 
@@ -1217,6 +1325,12 @@ public partial class LengthVsHashCode_ParseGraphicsUnits
 
 public partial class LengthVsHashCode_ParseGraphicsUnits_Mix
 {
+    /*
+    |                     Method |     Mean |    Error |   StdDev |
+    |--------------------------- |---------:|---------:|---------:|
+    | ParseGraphicsUnits_New_Mix | 31.64 ns | 0.389 ns | 0.364 ns |
+    | ParseGraphicsUnits_Old_Mix | 37.68 ns | 0.612 ns | 0.573 ns |
+     */
     [Benchmark]
     public string ParseGraphicsUnits_New_Mix() => NewRoslyn.ParseGraphicsUnits_Mix();
     [Benchmark]

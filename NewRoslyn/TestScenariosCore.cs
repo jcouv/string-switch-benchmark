@@ -7895,6 +7895,7 @@ public class TestScenariosCore
     }
 
 
+    // TODO2 would longer strings would tilt more in favor of optimization?
     public static string WriteEntityRef(string s)
     {
         return s switch
